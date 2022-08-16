@@ -74,57 +74,7 @@ main() {
 	# Used to name the BackUp file
 	cur_date=$(date +%Y_%m_%d)
 
-	continue="y"
-
-	# Display menu
-	# 1: Full-Backup of "/home" directory
-	# 2: Incremental-Backup of "/home" directory
-	# 3: Full-Backup of a chosen directory
-	# 4: Exit the Program
-	# 5: Debug
-	# *: Default
-	while [ $continue = "y" ]; do
-		echo -e "Backup-Menu\nPlease choose an option 1 - 4:\n"
-		echo -e "----------------------------------------------------------------------------------------------------\n"
-		echo -e "1: Full-Backup /home \n2: Incremetal-Backup /home \n3: Full-Backup any directory \n4: Exit \n5: DEBUG"
-		read selection
-
-		case $selection in
-		1)
-			full_backup "/home/"$(whoami) $cur_date
-			;;
-		2)
-			incremental_backup "/home/"$(whoami) $cur_date
-			;;
-		3)
-			read directory
-			full_backup $directory $cur_date
-			;;
-		4)
-			echo -e "Would you like to exit the program! (Y/N)"
-			read exit_answer
-
-			while [ ${exit_answer^} != "N" ] && [ ${exit_answer^} != "Y" ]; do
-				echo "Please enter a valid response! \nWould you like to exit the program! (Y/N)"
-				read exit_answer
-			done
-			if [ ${exit_answer^} == "Y" ]; then
-				echo -e "Program finished!\n"
-				exit 0
-			else
-				continue
-			fi
-			;;
-		5)
-			echo "2022-08-16" | tr "-" "_"
-			read -rep "Please Enter a Message: "$'\n' message
-			;;
-		*)
-			echo -e "Please enter a valid Input!\n"
-			;;
-		esac
-
-	done
+	echo 
 }
 
 main
