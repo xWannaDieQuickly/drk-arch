@@ -16,6 +16,14 @@ cur_date=$(date +%Y_%m_%d) # Current date							##
 user=$(whoami)             # Current user							##
 ##########################################################################
 
+# Info Page
+help_page() {
+	echo -e "Usage: backup.sh [-l] [-d <path/to/disk>]\n"
+	echo -e "'backup.sh' archives the files of your '/home'-Directory,\nyou can choose to save the files locally or on an external drive.\n"
+	echo "-d </path/to/disk> 	save the backup to a disk"
+	echo "-l 			save the backup locally"
+}
+
 # Full BackUp of given directory
 # Args:
 # 1: Directory
@@ -89,17 +97,9 @@ save_to_disk() {
 	tar --exclude="$1/Backup" -czf "$3/${2}${clean_dir_name}_backup.tar.gz" "$1"
 }
 
-# Info Page
-help_page() {
-	echo -e "Usage: backup.sh [-l] [-d <path/to/disk>]\n"
-	echo -e "'backup.sh' archives the files of your '/home'-Directory,\nyou can choose to save the files locally or on an external drive.\n"
-	echo "-d </path/to/disk> 	save the backup to a disk"
-	echo "-l 			save the backup locally"
-}
-
 # Check if any options are entered
 # Output help for the user
-if [ $# -eq "0" ]; then
+if [ $# == "0" ]; then
 	echo "Please enter a valid Option:"
 	help_page
 	exit
@@ -117,7 +117,6 @@ while getopts "d:lh" opt; do
 
 		# Check if a date for the last backup is stored
 		if [ ! -f "/home/$user/Backup/last_backup_home_$user" ]; then
-			echo -e "You started the first Backup"
 			full_backup "/home/$user" $cur_date
 			exit
 		fi
