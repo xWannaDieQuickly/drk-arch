@@ -9,6 +9,18 @@
 # Date: 14.08.2022
 #
 
+
+#######################################################################################################
+# FIELDS
+#######################################################################################################
+# Current date
+cur_date=$(date +%Y_%m_%d)
+# Current user
+user=$(whoami)
+#######################################################################################################
+
+
+
 # Full BackUp of given directory
 # Args:
 # 1: Directory
@@ -22,6 +34,7 @@ full_backup() {
 	fi
 
 	# Create Full-Backup
+	# Exclude the directory the backups are stored in
 	clean_dir_name=$(echo $1 | tr "/" "_")
 	tar --exclude=$1/Backup -czf $1/Backup/${2}${clean_dir_name}_backup.tar.gz $1
 
@@ -57,6 +70,7 @@ incremental_backup() {
 	last_full_backup=$(cat $1/Backup/last_backup$clean_dir_name)
 
 	# Create new incremental BackUp
+	# Exclude the directory the backups are stored in
 	tar --exclude=$1/Backup -cz --newer-mtime=$(echo $last_full_backup | tr "_" "-") -f $1/Backup/${2}${clean_dir_name}_backup.tar.gz $1 --exclude=$1/Backup
 
 	# Delete BackUp after it was send to the server
@@ -79,6 +93,8 @@ save_to_disk() {
 
 	clean_dir_name=$(echo $1 | tr "/" "_")
 
+	# Create Full-Backup
+	# Exclude the directory the backups are stored in
 	tar --exclude=$1/Backup -czf $3/${2}${clean_dir_name}_backup.tar.gz $1 
 }
 
@@ -91,9 +107,7 @@ if [ $# -eq "0" ]; then
 	exit
 fi
 
-# Current date
-cur_date=$(date +%Y_%m_%d)
-user=$(whoami)
+
 
 while getopts "d:l" opt; do
 	case $opt in
@@ -104,13 +118,13 @@ while getopts "d:l" opt; do
 	l) # Save the backup locally
 
 		# Check if a date for the last backup is stored
-		if [ ! -f /tmp/backups/last_backup_home_$user ]; then
+		if [ ! -f "/home/"$user/Backup/last_backup_home_$user ]; then
 			echo -e "You started the first Backup"
 			full_backup "/home/"$user $cur_date
 			exit
 		fi
 
-		last_full_backup=$(cat /tmp/backups/last_backup_home_$user)
+		last_full_backup=$(cat "/home/"$user/last_backup_home_$user)
 
 		# Check if the last full back up was made this week
 		# if yes do an incremental backup
