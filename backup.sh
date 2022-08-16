@@ -23,10 +23,10 @@ full_backup() {
 
 	# Create Full-Backup
 	clean_dir_name=$(echo $1 | tr "/" "_")
-	tar -czf /tmp/backups/${2}${clean_dir_name}_backup.tar.gz $1
+	tar -czf /home/sjoist/Backup/${2}${clean_dir_name}_backup.tar.gz $1 --exclude=$1/Backup
 
 	# Safe the date
-	echo $2 >/tmp/backups/last_backup$clean_dir_name
+	echo $2 >/home/sjoist/Backup/last_backup$clean_dir_name
 
 	# Delete BackUp after it was send to the server
 	# rm /tmp/${2}${clean_dir_name}_full_backup.tar.gz
@@ -57,7 +57,7 @@ incremental_backup() {
 	last_full_backup=$(cat /tmp/backups/last_backup$clean_dir_name)
 
 	# Create new incremental BackUp
-	tar -cz --newer-mtime=$(echo $last_full_backup | tr "_" "-") -f /tmp/backups/${2}${clean_dir_name}_backup.tar.gz $1
+	tar -cz --newer-mtime=$(echo $last_full_backup | tr "_" "-") -f /tmp/backups/${2}${clean_dir_name}_backup.tar.gz $1 --exclude=$1/Backup
 
 	# Delete BackUp after it was send to the server
 	# rm /tmp/${2}${clean_dir_name}_inc_backup.tar.gz
@@ -79,7 +79,7 @@ save_to_disk() {
 
 	clean_dir_name=$(echo $1 | tr "/" "_")
 
-	tar -czf ${3}${2}${clean_dir_name}_backup.tar.gz $1
+	tar --exclude=$1/Backup -czf $3/${2}${clean_dir_name}_backup.tar.gz $1 
 }
 
 # Check if any options are entered
