@@ -23,10 +23,10 @@ full_backup() {
 
 	# Create Full-Backup
 	clean_dir_name=$(echo $1 | tr "/" "_")
-	tar -czf /home/sjoist/Backup/${2}${clean_dir_name}_backup.tar.gz $1 --exclude=$1/Backup
+	tar --exclude=$1/Backup -czf $1/Backup/${2}${clean_dir_name}_backup.tar.gz $1
 
 	# Safe the date
-	echo $2 >/home/sjoist/Backup/last_backup$clean_dir_name
+	echo $2 >$1/Backup/last_backup$clean_dir_name
 
 	# Delete BackUp after it was send to the server
 	# rm /tmp/${2}${clean_dir_name}_full_backup.tar.gz
@@ -49,15 +49,15 @@ incremental_backup() {
 
 	# Check if a full Back-Up of the given directory has already been created
 	# If no, create full Back-Up instead of incremental Back-Up
-	if [ ! -f "/tmp/backups/${2}${clean_dir_name}_backup.tar.gz" ]; then
+	if [ ! -f "$1/Backup${2}${clean_dir_name}_backup.tar.gz" ]; then
 		full_backup $1 $2
 		return
 	fi
 
-	last_full_backup=$(cat /tmp/backups/last_backup$clean_dir_name)
+	last_full_backup=$(cat $1/Backup/last_backup$clean_dir_name)
 
 	# Create new incremental BackUp
-	tar -cz --newer-mtime=$(echo $last_full_backup | tr "_" "-") -f /tmp/backups/${2}${clean_dir_name}_backup.tar.gz $1 --exclude=$1/Backup
+	tar --exclude=$1/Backup -cz --newer-mtime=$(echo $last_full_backup | tr "_" "-") -f $1/Backup/${2}${clean_dir_name}_backup.tar.gz $1 --exclude=$1/Backup
 
 	# Delete BackUp after it was send to the server
 	# rm /tmp/${2}${clean_dir_name}_inc_backup.tar.gz
