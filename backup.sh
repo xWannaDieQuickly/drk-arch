@@ -9,17 +9,12 @@
 # Date: 14.08.2022
 #
 
-
-#######################################################################################################
-# FIELDS
-#######################################################################################################
-# Current date
-cur_date=$(date +%Y_%m_%d)
-# Current user
-user=$(whoami)
-#######################################################################################################
-
-
+##########################################################################
+#	VARIABLES															##
+##########################################################################
+cur_date=$(date +%Y_%m_%d) # Current date							##
+user=$(whoami)             # Current user							##
+##########################################################################
 
 # Full BackUp of given directory
 # Args:
@@ -33,17 +28,14 @@ full_backup() {
 		return
 	fi
 
-	# Create Full-Backup
+	clean_dir_name=$(echo "$1" | tr "/" "_")
+
+	# Create archive of the given directory
 	# Exclude the directory the backups are stored in
-	clean_dir_name=$(echo $1 | tr "/" "_")
-	tar --exclude=$1/Backup -czf $1/Backup/${2}${clean_dir_name}_backup.tar.gz $1
+	tar --exclude="$1/Backup" -czf "$1/Backup/${2}${clean_dir_name}_backup.tar.gz" "$1"
 
 	# Safe the date
-	echo $2 >$1/Backup/last_backup$clean_dir_name
-
-	# Delete BackUp after it was send to the server
-	# rm /tmp/${2}${clean_dir_name}_full_backup.tar.gz
-
+	echo "$2" >"$1/Backup/last_backup$clean_dir_name"
 }
 
 # Incremental BackUp of given directory
@@ -58,24 +50,20 @@ incremental_backup() {
 		return
 	fi
 
-	clean_dir_name=$(echo $1 | tr "/" "_")
+	clean_dir_name=$(echo "$1" | tr "/" "_")
 
 	# Check if a full Back-Up of the given directory has already been created
 	# If no, create full Back-Up instead of incremental Back-Up
 	if [ ! -f "$1/Backup${2}${clean_dir_name}_backup.tar.gz" ]; then
-		full_backup $1 $2
+		full_backup "$1" "$2"
 		return
 	fi
 
 	last_full_backup=$(cat $1/Backup/last_backup$clean_dir_name)
 
-	# Create new incremental BackUp
+	# Create archive of the given directory
 	# Exclude the directory the backups are stored in
-	tar --exclude=$1/Backup -cz --newer-mtime=$(echo $last_full_backup | tr "_" "-") -f $1/Backup/${2}${clean_dir_name}_backup.tar.gz $1 --exclude=$1/Backup
-
-	# Delete BackUp after it was send to the server
-	# rm /tmp/${2}${clean_dir_name}_inc_backup.tar.gz
-
+	tar --exclude="$1/Backup" -cz --newer-mtime=$(echo $last_full_backup | tr "_" "-") -f "$1/Backup/${2}${clean_dir_name}_backup.tar.gz" "$1"
 }
 
 # Save the Back-Up as Archive to a disk
@@ -93,9 +81,9 @@ save_to_disk() {
 
 	clean_dir_name=$(echo $1 | tr "/" "_")
 
-	# Create Full-Backup
+	# Create archive of the given directory
 	# Exclude the directory the backups are stored in
-	tar --exclude=$1/Backup -czf $3/${2}${clean_dir_name}_backup.tar.gz $1 
+	tar --exclude="$1/Backup" -czf "$3/${2}${clean_dir_name}_backup.tar.gz" "$1"
 }
 
 # Check if any options are entered
@@ -107,33 +95,33 @@ if [ $# -eq "0" ]; then
 	exit
 fi
 
-
-
+# Main loop
+# Process the options
 while getopts "d:l" opt; do
 	case $opt in
 	d) # Save the backup to a disk
-		save_to_disk "/home/"$user $cur_date $OPTARG
+		save_to_disk "/home/$user" $cur_date $OPTARG
 		exit
 		;;
 	l) # Save the backup locally
 
 		# Check if a date for the last backup is stored
-		if [ ! -f "/home/"$user/Backup/last_backup_home_$user ]; then
+		if [ ! -f "/home/$user/Backup/last_backup_home_$user" ]; then
 			echo -e "You started the first Backup"
-			full_backup "/home/"$user $cur_date
+			full_backup "/home/$user" $cur_date
 			exit
 		fi
 
-		last_full_backup=$(cat "/home/"$user/last_backup_home_$user)
+		last_full_backup=$(cat "/home/"$user/Backup/last_backup_home_$user)
 
 		# Check if the last full back up was made this week
 		# if yes do an incremental backup
 		if [ $(date +%U -d $(echo $last_full_backup | tr "_" "-")) != $(date +%U -d $(echo $cur_date | tr "_" "-")) ]; then
 			echo "The last full backup was last week"
-			full_backup "/home/"$user $cur_date
+			full_backup "/home/$user" $cur_date
 		else
 			echo "The last full backup was this week"
-			incremental_backup "/home/"$user $cur_date
+			incremental_backup "/home/$user" $cur_date
 		fi
 		;;
 	\?) # No valid option was given
