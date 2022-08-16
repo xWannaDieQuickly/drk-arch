@@ -91,9 +91,10 @@ save_to_disk() {
 
 # Info Page
 help_page() {
-	echo -e "Usage: backup.sh [-l] [-d <path/to/disk>]\n\n"
-	echo "-d [/path/to/disk] 	save the backup to a disk"
-	echo "-l 					save the backup locally"
+	echo -e "Usage: backup.sh [-l] [-d <path/to/disk>]\n"
+	echo -e "'backup.sh' archives the files of your '/home'-Directory,\nyou can choose to save the files locally or on an external drive.\n"
+	echo "-d </path/to/disk> 	save the backup to a disk"
+	echo "-l 			save the backup locally"
 }
 
 # Check if any options are entered
