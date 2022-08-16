@@ -24,7 +24,8 @@ full_backup() {
 
 	# Check if directory exists
 	if [ ! -d "$1" ]; then
-		echo -e "$1 does not exist. Please enter a valid directory (/path/to/directory).\n"
+		echo -e "$1 does not exist. Please enter a valid directory (/path/to/directory)."
+		help_page
 		return
 	fi
 
@@ -46,7 +47,8 @@ incremental_backup() {
 
 	# Check if directory exists
 	if [ ! -d "$1" ]; then
-		echo -e "$1 does not exist. Please enter a valid directory (/path/to/directory).\n"
+		echo -e "$1 does not exist. Please enter a valid directory (/path/to/directory)."
+		help_page
 		return
 	fi
 
@@ -75,7 +77,8 @@ save_to_disk() {
 
 	# Check if disk exists
 	if [ ! -d "$3" ]; then
-		echo -e "$3 does not exist. Please enter a valid disc (/path/to/disk).\n"
+		echo -e "$3 does not exist. Please enter a valid disc (/path/to/disk)."
+		help_page
 		return
 	fi
 
@@ -86,18 +89,24 @@ save_to_disk() {
 	tar --exclude="$1/Backup" -czf "$3/${2}${clean_dir_name}_backup.tar.gz" "$1"
 }
 
+# Info Page
+help_page() {
+	echo -e "Usage: backup.sh [-l] [-d <path/to/disk>]\n\n"
+	echo "-d [/path/to/disk] 	save the backup to a disk"
+	echo "-l 					save the backup locally"
+}
+
 # Check if any options are entered
 # Output help for the user
 if [ $# -eq "0" ]; then
 	echo "Please enter a valid Option:"
-	echo "-d [/path/to/disk] to save the backup to a disk"
-	echo "-l to save the backup locally"
+	help_page
 	exit
 fi
 
 # Main loop
 # Process the options
-while getopts "d:l" opt; do
+while getopts "d:lh" opt; do
 	case $opt in
 	d) # Save the backup to a disk
 		save_to_disk "/home/$user" $cur_date $OPTARG
@@ -124,10 +133,13 @@ while getopts "d:l" opt; do
 			incremental_backup "/home/$user" $cur_date
 		fi
 		;;
+	h)
+		help_page
+		;;
+
 	\?) # No valid option was given
 		echo "Please enter a valid Option:"
-		echo "-d [/path/to/disk] to save the backup to a disk"
-		echo "-l to save the backup locally"
+		help_page
 		;;
 	esac
 done
