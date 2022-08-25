@@ -1,5 +1,6 @@
 {
     "audio": "pipewire",
+    "archinstall-language":"Deutsch",
     "bootloader": "grub-install",
     "custom-commands": [
         "echo finished"
