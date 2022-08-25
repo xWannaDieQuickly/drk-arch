@@ -10,7 +10,6 @@
                 "start": "6MB"
             },
             {
-                "boot": false,
                 "filesystem": {
                     "format": "ext4"
                 },
