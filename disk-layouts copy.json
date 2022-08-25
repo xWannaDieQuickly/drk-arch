@@ -30,7 +30,7 @@
                     "format": "ext4"
                 },
                 "format": true,
-                "mountpoint": null,
+                "mountpoint": "/",
                 "size": "100%",
                 "start": "4514MB",
                 "type": "primary",
