@@ -2,18 +2,18 @@
     "audio": "pipewire",
     "bootloader": "grub-install",
     "custom-commands": [
-        "cd /home/devel; git clone https://aur.archlinux.org/paru.git",
+        "cd 'done installing",
         "chown -R devel:devel /home/devel/paru",
         "usermod -aG docker devel"
     ],
     "filesystem": "btrfs",
-    "gfx_driver": "VMware / VirtualBox (open-source)",
+    "gfx_driver": "intel (open source)",
     "swap": true,
     "hostname": "myarch",
     "kernels": [
         "linux"
     ],
-    "keyboard-language": "de",
+    "keyboard-language": "de-latin1",
     "mirror-region": "Worldwide",
     "nic": {
         "NetworkManager": true,
@@ -21,14 +21,22 @@
     },
     "ntp": true,
     "packages": [
-        "docker",
+        "efibootmgr",
+        "os-prober",
+        "mtools",
         "git",
         "wget",
-        "zsh"
+        "zsh",
+        "gnome",
+        "xorg-server",
+        "xorg-apps",
+        "gnome",
+        "gnome-extra",
+        "networkmanager"
     ],
-    "profile": "gnome",
     "services": [
-        "docker"
+        "gmd",
+        "NetworkManager"
     ],
     "sys-encoding": "utf-8",
     "sys-language": "de_DE",
