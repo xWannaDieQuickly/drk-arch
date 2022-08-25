@@ -2,6 +2,7 @@
     "/dev/sda": {
         "partitions": [
             {
+                "boot": true,
                 "filesystem": {
                     "format": "fat32"
                 },
@@ -17,6 +18,7 @@
                 "size": "100%",
                 "start": "4514MB"
             }
-        ]
+        ],
+        "wipe": true
     }
 }
