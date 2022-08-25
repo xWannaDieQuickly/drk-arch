@@ -13,6 +13,7 @@
     "kernels": [
         "linux"
     ],
+    "keyboard-layout": "de",
     "keyboard-language": "de",
     "mirror-region": "Worldwide",
     "nic": {
