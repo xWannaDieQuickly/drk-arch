@@ -2,9 +2,7 @@
     "audio": "pipewire",
     "bootloader": "grub-install",
     "custom-commands": [
-        "cd 'done installing",
-        "chown -R devel:devel /home/devel/paru",
-        "usermod -aG docker devel"
+        "echo finished"
     ],
     "filesystem": "btrfs",
     "gfx_driver": "intel (open source)",
