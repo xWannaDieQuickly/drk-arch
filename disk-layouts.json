@@ -13,8 +13,17 @@
                 "size": "512MB",
                 "start": "5MB",
                 "wipe": false
+            },
+            {
+                "ESP": false,
+                "boot": false,
+                "filesystem": "swap",
+                "type": "primary",
+                "mountpoint": "/",
+                "size": "513MB",
+                "start": "4000MB",
+                "wipe": false
             }
-            
         ]
     }
 }
