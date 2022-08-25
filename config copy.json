@@ -1,0 +1,43 @@
+{
+    "archinstall-language":"German",
+    "audio": "pipewire",
+    "bootloader": "grub-install",
+    "custom-commands": [
+        "echo finished"
+    ],
+    "gfx_driver": "Nvidia",
+    "hostname": "myarch",
+    "harddrives": [
+        "/dev/sda"
+    ],
+    "kernels": [
+        "linux"
+    ],
+    "keyboard-language": "de-latin1",
+    "mirror-region": "Worldwide",
+    "nic": {
+        "NetworkManager": true,
+        "nic": "Use NetworkManager (necessary to configure internet graphically in GNOME and KDE)"
+    },
+    "ntp": true,
+    "packages": [
+        "efibootmgr",
+        "os-prober",
+        "mtools",
+        "git",
+        "wget",
+        "zsh",
+        "gnome",
+        "xorg-server",
+        "xorg-apps",
+        "gnome",
+        "gnome-extra",
+        "networkmanager"
+    ],
+    "services": [
+    ],
+    "swap": true,
+    "sys-encoding": "utf-8",
+    "sys-language": "de_DE@euro",
+    "timezone": "Europe/Berlin"
+}
