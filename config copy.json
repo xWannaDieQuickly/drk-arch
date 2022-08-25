@@ -1,4 +1,5 @@
 {
+    "archinstall-language": "English",
     "audio": "pipewire",
     "bootloader": "grub-install",
     "custom-commands": [
@@ -33,8 +34,7 @@
         "gnome-extra",
         "networkmanager"
     ],
-    "services": [
-    ],
+    "services": [],
     "swap": true,
     "sys-encoding": "utf-8",
     "sys-language": "de_DE@euro",
