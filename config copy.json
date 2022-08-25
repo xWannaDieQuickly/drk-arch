@@ -1,5 +1,4 @@
 {
-    "archinstall-language":"English",
     "audio": "pipewire",
     "bootloader": "grub-install",
     "custom-commands": [
