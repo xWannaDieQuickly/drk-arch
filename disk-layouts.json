@@ -15,7 +15,12 @@
                 "wipe": false
             },
             {
+                "filesystem": "swap",
+                "start": "4000MB"
+            },
+            {
                 "ESP": false,
+                "boot":false,
                 "filesystem": {
                     "format": "ext4"
                 },
