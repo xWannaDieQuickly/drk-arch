@@ -1,13 +1,15 @@
 {
     "!root-password": "root",
-    "!users": {
-        "sebi": {
+    "!users": [
+        {
+            "username": "sebi",
             "!password": "sebi",
             "sudo": true
         },
-        "admin": {
+        {
+            "username": "admin",
             "!password": "admin",
             "sudo": false
         }
-    }
+    ]
 }
