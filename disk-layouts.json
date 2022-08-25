@@ -23,18 +23,6 @@
                 "size": "513MB",
                 "start": "4000MB",
                 "wipe": false
-            },
-            {
-                "ESP": false,
-                "filesystem": {
-                    "format": "ext4"
-                },
-                "format": true,
-                "mountpoint": "/",
-                "size": "100%",
-                "start": "4514MB",
-                "type": "primary",
-                "wipe": false
             }
         ]
     }
