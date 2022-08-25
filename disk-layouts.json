@@ -11,8 +11,8 @@
                 "format": true,
                 "mountpoint": "/efi",
                 "size": "512MB",
-                "start": "5MB",
-                "wipe": false
+                "start": "6MB",
+                "wipe": true
             },
             {
                 "ESP": false,
@@ -25,7 +25,7 @@
                 "size": "100%",
                 "start": "4514MB",
                 "type": "primary",
-                "wipe": false
+                "wipe": true
             }
         ]
     }
