@@ -1,6 +1,6 @@
 {
+    "archinstall-language":"German",
     "audio": "pipewire",
-    "archinstall-language":"Deutsch",
     "bootloader": "grub-install",
     "custom-commands": [
         "echo finished"
@@ -35,11 +35,9 @@
         "networkmanager"
     ],
     "services": [
-        "gmd",
-        "NetworkManager"
     ],
     "swap": true,
     "sys-encoding": "utf-8",
-    "sys-language": "de_DE",
-    "timezone": "UTC"
+    "sys-language": "de_DE@euro",
+    "timezone": "Europe/Berlin"
 }
