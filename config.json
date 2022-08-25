@@ -6,7 +6,6 @@
     ],
     "gfx_driver": "Nvidia",
     "hostname": "myarch",
-    "harddrives": "/dev/sda",
     "kernels": [
         "linux"
     ],
