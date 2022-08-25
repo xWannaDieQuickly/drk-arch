@@ -17,8 +17,7 @@
                 "format": true,
                 "mountpoint": "/",
                 "size": "100%",
-                "start": "4514MB",
-                "wipe": true
+                "start": "4514MB"
             }
         ]
     }
