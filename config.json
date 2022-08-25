@@ -6,6 +6,9 @@
     ],
     "gfx_driver": "Nvidia",
     "hostname": "myarch",
+    "harddrives": [
+        "/dev/sda"
+    ],
     "kernels": [
         "linux"
     ],
@@ -34,6 +37,7 @@
         "gmd",
         "NetworkManager"
     ],
+    "swap": true,
     "sys-encoding": "utf-8",
     "sys-language": "de_DE",
     "timezone": "UTC"
