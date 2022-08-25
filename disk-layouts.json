@@ -16,12 +16,14 @@
             },
             {
                 "ESP": false,
-                "boot": false,
-                "filesystem": "swap",
+                "filesystem": {
+                    "format": "ext4"
+                },
+                "format": true,
+                "mountpoint": "/",
+                "size": "100%",
+                "start": "4514MB",
                 "type": "primary",
-                "mountpoint": null,
-                "size": "513MB",
-                "start": "4000MB",
                 "wipe": false
             }
         ]
