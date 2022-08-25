@@ -4,10 +4,9 @@
     "custom-commands": [
         "echo finished"
     ],
-    "filesystem": "btrfs",
-    "gfx_driver": "intel (open source)",
-    "swap": true,
+    "gfx_driver": "Nvidia",
     "hostname": "myarch",
+    "harddrives": "/dev/sda",
     "kernels": [
         "linux"
     ],
