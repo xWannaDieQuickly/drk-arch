@@ -38,8 +38,8 @@ def get_hw():
 def main():
 
     hwInfo = get_hw()
+    print(json.dumps(hwInfo, indent=4))
 
-    print(hwInfo)
 
     booted = "UEFI" if os.path.exists("/sys/firmware/efi") else "BIOS"
     print("The system booted with %s" % booted)
