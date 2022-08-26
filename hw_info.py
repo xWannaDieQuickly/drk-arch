@@ -3,25 +3,29 @@ import getmac
 import os
 import json
 import subprocess
+import psutil
 
 # Computer network name
-print(f"Computer network name: {platform.node()}")
+computerNetworkName = platform.node()
 # Machine type
-print(f"Machine type: {platform.machine()}")
+machineType = platform.machine()
 # Processor type
-print(f"Processor type: {platform.processor()}")
+processorType = platform.processor()
 # Platform type
-print(f"Platform type: {platform.platform()}")
+platformType = platform.platform()
 # Operating system
-print(f"Operating system: {platform.system()}")
+operatingSystem = platform.system()
 # Operating system release
-print(f"Operating system release: {platform.release()}")
+operatingSystemRelease = platform.release()
 # Operating system version
-print(f"Operating system version: {platform.version()}")
+operatingSystemVersion = platform.version()
 # MAC Adress
-print(f"MAC Adress: {getmac.get_mac_address()}")
+macAdress = getmac.get_mac_address()
+# Disk Partitions
+diskPartitions = psutil.disk_partitions()
 
-string = "STRING"
+print(diskPartitions)
+
 
 booted = "UEFI" if os.path.exists("/sys/firmware/efi") else "BIOS"
 print("The system booted with %s" % booted)
@@ -33,7 +37,7 @@ jsb = {
     "JSON": {2: [1, 2, 3, 4, 5]}
 }
 
-js = json.dumps(jsb,indent=4)
+js = json.dumps(jsb, indent=4)
 
 print(js)
 
