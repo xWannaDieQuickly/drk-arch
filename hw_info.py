@@ -1,7 +1,7 @@
 import platform
 import getmac
 import os
-import sys
+import json
 import subprocess
 
 # Computer network name
@@ -25,10 +25,20 @@ string = "STRING"
 
 booted = "UEFI" if os.path.exists("/sys/firmware/efi") else "BIOS"
 print("The system booted with %s" % booted)
+jsb = {
+    "This": "CD",
+    "is": "AB",
+    1: {"a": "c"},
+    "Test": "",
+    "JSON": {2: [1, 2, 3, 4, 5]}
+}
 
-js = {"AB": "CD",
-      "CD": "AB"}
+js = json.dumps(jsb,indent=4)
+
+print(js)
+
+json.dump(js, "config.json", "w")
 
 
-subprocess.run(["echo", "myTest", string], check=True, text=True)
+#subprocess.run(["echo", "myTest", string], check=True, text=True)
 #subprocess.run(["archinstall", "--config" "config.json", "--dry-run"], check=True, text=True)
