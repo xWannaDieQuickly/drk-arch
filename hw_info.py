@@ -1,5 +1,6 @@
 import platform
 import getmac
+import archinstall
 
 # Computer network name
 print(f"Computer network name: {platform.node()}")
@@ -17,3 +18,6 @@ print(f"Operating system release: {platform.release()}")
 print(f"Operating system version: {platform.version()}")
 # MAC Adress
 print(f"MAC Adress: {getmac.get_mac_address()}")
+
+
+print(archinstall.has_amd_cpu)
