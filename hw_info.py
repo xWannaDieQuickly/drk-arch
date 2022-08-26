@@ -32,7 +32,8 @@ def get_hw():
     hardInfo["firmware"] = "UEFI" if os.path.exists(
         "/sys/firmware/efi") else "BIOS"
     fdisk = subprocess.run(["fdisk", "-l"], check=True, text=True)
-    hardInfo["fdisk"] = fdisk
+    print(fdisk)
+    # hardInfo["fdisk"] = fdisk
 
     
 
