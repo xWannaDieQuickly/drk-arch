@@ -37,7 +37,8 @@ js = json.dumps(jsb,indent=4)
 
 print(js)
 
-json.dump(jsb,"config.json")
+with open('config.json', 'w', encoding='utf-8') as f:
+    json.dump(jsb, f, ensure_ascii=False, indent=4)
 
 
 #subprocess.run(["echo", "myTest", string], check=True, text=True)
