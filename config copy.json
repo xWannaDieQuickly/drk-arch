@@ -3,7 +3,9 @@
     "audio": "pipewire",
     "bootloader": "grub-install",
     "custom-commands": [
-        "echo finished"
+        "pacman -R geary",
+        "pacman -R videos",
+        "pacman -R builder"
     ],
     "gfx_driver": "Nvidia",
     "hostname": "myarch",
@@ -34,7 +36,10 @@
         "gnome-extra",
         "networkmanager"
     ],
-    "services": [],
+    "services": [
+        "gdm",
+        "NetworkManager"
+    ],
     "swap": true,
     "sys-encoding": "utf-8",
     "sys-language": "de_DE@euro",
