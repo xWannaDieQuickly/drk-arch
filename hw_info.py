@@ -49,3 +49,5 @@ def main():
 
     #subprocess.run(["echo", "myTest", string], check=True, text=True)
     #subprocess.run(["archinstall", "--config" "config.json", "--dry-run"], check=True, text=True)
+
+main()  
