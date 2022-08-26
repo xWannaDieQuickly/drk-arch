@@ -4,10 +4,10 @@ import os
 import json
 import subprocess
 import psutil
+from gpuinfo import GPUInfo
+
 
 # Read the hardware of the system
-
-
 def get_hw():
     hardInfo = {}
     # Computer network name
@@ -16,6 +16,7 @@ def get_hw():
     hardInfo["machineType"] = platform.machine()
     # Processor type
     hardInfo["processorType"] = platform.processor()
+    
     # Platform type
     hardInfo["platformType"] = platform.platform()
     # Operating system
@@ -29,27 +30,75 @@ def get_hw():
     # Disk Partitions
     hardInfo["diskPartitions"] = psutil.disk_partitions()
     # Firmware
-    hardInfo["firmware"] = "UEFI" if os.path.exists(
-        "/sys/firmware/efi") else "BIOS"
-    fdisk = subprocess.run(["fdisk", "-l"], check=True,
-                           text=True, capture_output=True)
-    print(json.dumps(fdisk.stdout, indent=4))
-    print("-----------------------------------")
-    print(type(fdisk.stdout))
-    print("-----------------------------------")
+    # hardInfo["firmware"] = "UEFI" if os.path.exists(
+    #     "/sys/firmware/efi") else "BIOS"
+    # fdisk = subprocess.run(["fdisk", "-l"], check=True,
+    #                        text=True, capture_output=True)
+    # print(fdisk.stdout)
+    # print("-----------------------------------")
+    # print(type(fdisk.stdout))
+    # print("-----------------------------------")
 
     # hardInfo["fdisk"] = fdisk
 
     return hardInfo
 
 
+def create_json(hwInfo):
+    if ("intel" in hwInfo["processorType"].lower()):
+        print("intel" + "-----" + hwInfo["processorType"].lower())
+
+    {
+        "audio": "pipewire",
+        "bootloader": "grub-install",
+        "custom-commands": [
+            "echo finished"
+        ],
+        "debug": False,
+        "gfx_driver": "Nvidia",
+        "hostname": "myarch",
+        "harddrives": [
+            "/dev/sda"
+        ],
+        "kernels": [
+            "linux"
+        ],
+        "keyboard-layout": "de",
+        "keyboard-language": "de",
+        "mirror-region": "Worldwide",
+        "nic": {
+            "NetworkManager": True,
+            "nic": "Use NetworkManager (necessary to configure internet graphically in GNOME and KDE)"
+        },
+        "ntp": True,
+        "packages": [
+            "efibootmgr",
+            "os-prober",
+            "mtools",
+            "git",
+            "wget",
+            "zsh",
+            "gnome",
+            "xorg-server",
+            "xorg-apps",
+            "gnome",
+            "gnome-extra",
+            "networkmanager"
+        ],
+        "services": [],
+        "swap": True,
+        "sys-encoding": "utf-8",
+        "sys-language": "de_DE@euro",
+        "timezone": "Europe/Berlin"
+    }
+
+
 def main():
+    print(GPUInfo.get_info())
+    # hwInfo = get_hw()
+    # print(json.dumps(hwInfo, indent=4))
 
-    hwInfo = get_hw()
-    print(json.dumps(hwInfo, indent=4))
-
-    booted = "UEFI" if os.path.exists("/sys/firmware/efi") else "BIOS"
-    print("The system booted with %s" % booted)
+    # create_json(hwInfo=hwInfo)
 
     # with open('config.json', 'w', encoding='utf-8') as f:
     #     json.dump(jsb, f, ensure_ascii=False, indent=4)
