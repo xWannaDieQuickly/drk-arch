@@ -1,6 +1,7 @@
 import platform
 import getmac
 import os, sys
+import subprocess
 
 # Computer network name
 print(f"Computer network name: {platform.node()}")
@@ -21,4 +22,7 @@ print(f"MAC Adress: {getmac.get_mac_address()}")
 
 booted = "UEFI" if os.path.exists("/sys/firmware/efi") else "BIOS"
 print("The system booted with %s" % booted)
-sys.exit(0)
+
+
+bashCommand = "echo 'Test123'"
+subprocess.run(bashCommand.split(), stdout=subprocess.PIPE)
