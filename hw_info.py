@@ -30,5 +30,5 @@ js = {"AB": "CD",
       "CD": "AB"}
 
 
-subprocess.run(["echo", "myTest", string, js], check=True, text=True)
+subprocess.run(["echo", "myTest", string], check=True, text=True)
 #subprocess.run(["archinstall", "--config" "config.json", "--dry-run"], check=True, text=True)
