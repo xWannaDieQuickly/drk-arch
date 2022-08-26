@@ -1,6 +1,6 @@
 import platform
 import getmac
-import archinstall
+import os, sys
 
 # Computer network name
 print(f"Computer network name: {platform.node()}")
@@ -19,5 +19,6 @@ print(f"Operating system version: {platform.version()}")
 # MAC Adress
 print(f"MAC Adress: {getmac.get_mac_address()}")
 
-
-print(archinstall.has_amd_cpu)
+booted = "UEFI" if os.path.exists("/sys/firmware/efi") else "BIOS"
+print("The system booted with %s" % booted)
+sys.exit(0)
