@@ -24,5 +24,4 @@ booted = "UEFI" if os.path.exists("/sys/firmware/efi") else "BIOS"
 print("The system booted with %s" % booted)
 
 
-bashCommand = "echo 'Test123'"
-subprocess.run(bashCommand.split(), stdout=subprocess.PIPE)
+subprocess.run(["echo", "TEST123"], check=True, text=True)
