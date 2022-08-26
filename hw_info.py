@@ -31,15 +31,14 @@ def get_hw():
     # Firmware
     hardInfo["firmware"] = "UEFI" if os.path.exists(
         "/sys/firmware/efi") else "BIOS"
-    fdisk = subprocess.run(["fdisk", "-l"], check=True, text=True, capture_output=True)
-    print(fdisk.stdout)
+    fdisk = subprocess.run(["fdisk", "-l"], check=True,
+                           text=True, capture_output=True)
+    print(json.dumps(fdisk.stdout, indent=4))
     print("-----------------------------------")
     print(type(fdisk.stdout))
     print("-----------------------------------")
 
     # hardInfo["fdisk"] = fdisk
-
-    
 
     return hardInfo
 
@@ -48,7 +47,6 @@ def main():
 
     hwInfo = get_hw()
     print(json.dumps(hwInfo, indent=4))
-
 
     booted = "UEFI" if os.path.exists("/sys/firmware/efi") else "BIOS"
     print("The system booted with %s" % booted)
@@ -59,4 +57,5 @@ def main():
     #subprocess.run(["echo", "myTest", string], check=True, text=True)
     #subprocess.run(["archinstall", "--config" "config.json", "--dry-run"], check=True, text=True)
 
-main()  
+
+main()
