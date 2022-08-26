@@ -95,6 +95,7 @@ def create_json(hwInfo):
 
 def main():
     print(GPUInfo.get_info())
+    lspci
     # hwInfo = get_hw()
     # print(json.dumps(hwInfo, indent=4))
 
