@@ -191,6 +191,7 @@ def main():
 
     with open(f'{path}config.json', 'w', encoding='utf-8') as f:
         json.dump(config, f, ensure_ascii=False, indent=4)
+        json.dumps(config, ensure_ascii=False, indent=4)
         f.close()
 
     with open(f'{path}creds.json', 'w', encoding='utf-8') as f:
@@ -207,9 +208,13 @@ def main():
     cred = f'{path}creds.json'
     disk_lay = f'{path}disk-layouts.json'
 
-    subprocess.run(["archinstall", "--config", config,
-                    "--creds", creds,
-                    "--disk_layouts", diskLayouts
+    subprocess.run(["archinstall",
+                    "--config", json.dumps(config,
+                                           ensure_ascii=False, indent=4),
+                    "--creds", json.dumps(creds,
+                                          ensure_ascii=False, indent=4),
+                    "--disk_layouts", json.dumps(diskLayouts,
+                                                 ensure_ascii=False, indent=4),
                     ], check=True, text=True)
 
 
