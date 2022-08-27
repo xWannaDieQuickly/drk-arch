@@ -95,8 +95,9 @@ def create_json(hwInfo):
 
 def main():
     # lspci
-    print(type(subprocess.run(["lspci"], check=True,
-                   text=True, capture_output=True).stdout))
+    lst = subprocess.run(["lspci"], check=True,
+                   text=True, capture_output=True).stdout.split("\n")
+    print(lst)
     # hwInfo = get_hw()
     # print(json.dumps(hwInfo, indent=4))
 
