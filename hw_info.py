@@ -109,18 +109,48 @@ def create_config(hwInfo):
     return config
 
 
+def create_creds(hwinfo):
+    creds = {
+        "!root-password": "root",
+        "!users": [
+            {
+                "username": "sebi",
+                "!password": "sebi",
+                "sudo": True
+            },
+            {
+                "username": "tester123",
+                "!password": "tester123",
+                "sudo": True
+            },
+            {
+                "username": "admin",
+                "!password": "admin",
+                "sudo": False
+            }
+        ]
+    }
+    return creds
+
+
 def main():
     hwInfo = get_hw()
     print(json.dumps(hwInfo, indent=4))
 
     config = create_config(hwInfo=hwInfo)
+    creds = create_creds(hwInfo=hwInfo)
     print("\n\n\n")
     print(json.dumps(config, indent=4))
 
     with open('config.json', 'w', encoding='utf-8') as f:
         json.dump(config, f, ensure_ascii=False, indent=4)
+        f.close()
 
-    subprocess.run(["archinstall", "--config", "config.json",
+    with open('config.json', 'w', encoding='utf-8') as f:
+        json.dump(creds, f, ensure_ascii=False, indent=4)
+        f.close()
+
+    subprocess.run(["archinstall", "--config", "config.json", "--creds", "creds.config",
                    "--dry-run"], check=True, text=True)
 
 
