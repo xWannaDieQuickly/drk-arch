@@ -133,8 +133,9 @@ def create_creds(hwInfo):
 
 
 def create_disk_layouts(hwInfo):
-    for d in hwInfo["disks"]:
-        print(d)
+    print(repr(hwInfo["disks"]))
+    # for d in hwInfo["disks"]:
+    #     print(d)
     diskLayouts = {
         "/dev/sda": {
             "partitions": [
