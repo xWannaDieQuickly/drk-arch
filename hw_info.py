@@ -29,24 +29,36 @@ def get_hw():
     # Disk Partitions
     hardInfo["diskPartitions"] = psutil.disk_partitions()
     # Firmware
-    # hardInfo["firmware"] = "UEFI" if os.path.exists(
-    #     "/sys/firmware/efi") else "BIOS"
-    # fdisk = subprocess.run(["fdisk", "-l"], check=True,
-    #                        text=True, capture_output=True)
-    # print(fdisk.stdout)
-    # print("-----------------------------------")
-    # print(type(fdisk.stdout))
-    # print("-----------------------------------")
-
-    # hardInfo["fdisk"] = fdisk
+    hardInfo["firmware"] = "UEFI" if os.path.exists(
+        "/sys/firmware/efi") else "BIOS"
+    # Disks
+    hardInfo["disks"] = subprocess.run(["fdisk", "-l"], check=True,
+                                       text=True, capture_output=True).stdout
+    # VGA
+    for e in subprocess.run(["lspci"], check=True,
+                            text=True, capture_output=True).stdout.splitlines():
+        if "VGA" in e:
+            hardInfo["vga"] = e
+        else:
+            hardInfo["vga"] = None
 
     return hardInfo
 
 
 def create_json(hwInfo):
-    if ("intel" in hwInfo["processorType"].lower()):
 
-        print("intel" + "-----" + hwInfo["processorType"].lower())
+    if "nvidia" in hwInfo["vga"].lower():
+        vga = "Nvidia"
+    elif "intel" in hwInfo["vga"].lower():
+        vga = "Intel (open-source)"
+    elif ["vmware", "virtualbox"] in hwInfo["vga"].lower():
+        vga = "VMware / VirtualBox (open-source)"
+    elif "amd" in hwInfo["vga"].lower():
+        vga = "AMD / ATI (open-source)"
+    else:
+        vga = "All open-source (default)"
+
+    print(vga)
 
     {
         "audio": "pipewire",
@@ -94,22 +106,21 @@ def create_json(hwInfo):
 
 
 def main():
-    # lspci
     lst = subprocess.run(["lspci"], check=True,
                          text=True, capture_output=True).stdout.splitlines()
     for e in lst:
         if "VGA" in e:
             print(e)
-    # hwInfo = get_hw()
+    hwInfo = get_hw()
     # print(json.dumps(hwInfo, indent=4))
 
-    # create_json(hwInfo=hwInfo)
+    create_json(hwInfo=hwInfo)
 
     # with open('config.json', 'w', encoding='utf-8') as f:
     #     json.dump(jsb, f, ensure_ascii=False, indent=4)
 
-    #subprocess.run(["echo", "myTest", string], check=True, text=True)
-    #subprocess.run(["archinstall", "--config" "config.json", "--dry-run"], check=True, text=True)
+    # subprocess.run(["echo", "myTest", string], check=True, text=True)
+    # subprocess.run(["archinstall", "--config" "config.json", "--dry-run"], check=True, text=True)
 
 
 main()
