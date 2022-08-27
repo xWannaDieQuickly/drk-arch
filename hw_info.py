@@ -41,11 +41,11 @@ def get_hw():
             hardInfo["vga"] = e
     return hardInfo
 
+
 # Create the config json
-
-
 def create_config(hwInfo):
 
+    # Check the VGA
     if hwInfo["vga"] is None:
         vga = "All open-source (default)"
     elif "nvidia" in hwInfo["vga"].lower():
@@ -62,6 +62,7 @@ def create_config(hwInfo):
     if hwInfo["macAddress"] == "00:0c:29:92:0f:3c":
         hostname = "Sebi"
 
+    # Get pkgs and services to install
     with open('data.json', 'r', encoding='utf-8') as f:
         data = json.load(f)
         pkgs = data["pkgs"]
@@ -142,10 +143,6 @@ def create_disk_layouts(hwInfo):
         if v == max(diskSize):
             print(k, "...", v)
 
-    # for e in te:
-    #     re.findall("(?<=,\s)(.*)(?=\sbytes)",nd)
-    #     print(int(e))
-
     diskLayouts = {
         "/dev/sda": {
             "partitions": [
@@ -188,18 +185,22 @@ def main():
     creds = create_creds(hwInfo=hwInfo)
     diskLayouts = create_disk_layouts(hwInfo=hwInfo)
 
-    # print(diskLayouts)
+    with open('config.json', 'w', encoding='utf-8') as f:
+        json.dump(config, f, ensure_ascii=False, indent=4)
+        f.close()
 
-    # with open('config.json', 'w', encoding='utf-8') as f:
-    #     json.dump(config, f, ensure_ascii=False, indent=4)
-    #     f.close()
+    with open('creds.json', 'w', encoding='utf-8') as f:
+        json.dump(creds, f, ensure_ascii=False, indent=4)
+        f.close()
 
-    # with open('creds.json', 'w', encoding='utf-8') as f:
-    #     json.dump(creds, f, ensure_ascii=False, indent=4)
-    #     f.close()
+    with open('diskLayouts.json', 'w', encoding='utf-8') as f:
+        json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
+        f.close()
 
-    # subprocess.run(["archinstall", "--config", "config.json", "--creds", "creds.json",
-    #                "--dry-run"], check=True, text=True)
+    subprocess.run(["archinstall", "--config", "config.json",
+                    "--creds", "creds.json",
+                    "--disk_layouts", "disk-layouts.json"
+                   "--dry-run"], check=True, text=True)
 
 
 main()
