@@ -203,9 +203,9 @@ def main():
 
     time.sleep(2)
 
-    subprocess.run(["archinstall", "--config", f'{path}config.json',
-                    "--creds", f'{path}creds.json',
-                    "--disk_layouts", f'{path}disk-layouts.json'
+    subprocess.run(["archinstall", "--config", f"{path}config.json",
+                    "--creds", f"{path}creds.json",
+                    "--disk_layouts", f"{path}disk-layouts.json"
                     ], check=True, text=True)
 
 
