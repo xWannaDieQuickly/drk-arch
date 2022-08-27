@@ -64,7 +64,7 @@ def create_config(hwInfo):
 
     with open('data.json', 'r', encoding='utf-8') as f:
         pkgs = json.load(f)
-        print(type(pkgs))
+        print(type(pkgs))["pkgs"]
         f.close()
 
     config = {
