@@ -98,7 +98,8 @@ def main():
     lst = subprocess.run(["lspci"], check=True,
                          text=True, capture_output=True).stdout.splitlines()
     for e in lst:
-        print(e)
+        if "VGA" in e:
+            print(e)
     # hwInfo = get_hw()
     # print(json.dumps(hwInfo, indent=4))
 
