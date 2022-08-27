@@ -142,9 +142,12 @@ def create_disk_layouts(hwInfo):
         size = int(re.findall("(?<=,\s)(.*)(?=\sbytes)", disk)[0])
         name = re.findall("(?<=Disk\s)(.*)(?=:)", disk)[0]
         diskSize.append(size)
+        print(size)
         disks[name] = size
     print(max(diskSize))
-    print(el for el in disks.values())
+    for k, v in disks:
+        if v == max(diskSize):
+            print(k, "...", v)
 
     # for e in te:
     #     re.findall("(?<=,\s)(.*)(?=\sbytes)",nd)
