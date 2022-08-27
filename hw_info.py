@@ -60,7 +60,6 @@ def create_config(hwInfo):
 
     if hwInfo["macAddress"] == "00:0c:29:92:0f:3c":
         hostname = "Sebi"
-        print("Sebi")
 
     config = {
         "audio": "pipewire",
@@ -134,7 +133,8 @@ def create_creds(hwInfo):
 
 
 def create_disk_layouts(hwInfo):
-    print(hwInfo["disks"])
+    for d in hwInfo["disks"]:
+        print(d)
     diskLayouts = {
         "/dev/sda": {
             "partitions": [
