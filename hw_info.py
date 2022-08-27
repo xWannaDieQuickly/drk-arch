@@ -140,7 +140,8 @@ def create_disk_layouts(hwInfo):
     for d in disks:
         te.append(d.split("\n")[0])
         temp = d.split("\n")[0]
-        print(re.findall("(?<=\\dev\\)(.*)(?=:)", temp))
+        print(temp)
+        print(re.findall("(?<=\\dev\\)(.*)(?=bytes)", temp))
 
     # for e in te:
     #     re.findall("(?<=,\s)(.*)(?=\sbytes)",nd)
