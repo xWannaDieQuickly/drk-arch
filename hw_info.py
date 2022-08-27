@@ -185,15 +185,15 @@ def main():
     creds = create_creds(hwInfo=hwInfo)
     diskLayouts = create_disk_layouts(hwInfo=hwInfo)
 
-    with open('BackUp/config.json', 'w', encoding='utf-8') as f:
+    with open('config.json', 'w', encoding='utf-8') as f:
         json.dump(config, f, ensure_ascii=False, indent=4)
         f.close()
 
-    with open('BackUp/creds.json', 'w', encoding='utf-8') as f:
+    with open('creds.json', 'w', encoding='utf-8') as f:
         json.dump(creds, f, ensure_ascii=False, indent=4)
         f.close()
 
-    with open('BackUp/diskLayouts.json', 'w', encoding='utf-8') as f:
+    with open('diskLayouts.json', 'w', encoding='utf-8') as f:
         json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
         f.close()
 
