@@ -135,9 +135,11 @@ def create_creds(hwInfo):
 def create_disk_layouts(hwInfo):
 
     disks = hwInfo["disks"].split("\n\n\n")
-    disks = disks.split("\n")[0]
+    for d in disks:
+        nd = d.split("\n")[0]
+        print(nd)
 
-    print(disks)
+    # print(nd)
 
     diskLayouts = {
         "/dev/sda": {
