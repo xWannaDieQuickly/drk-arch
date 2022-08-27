@@ -51,7 +51,7 @@ def create_json(hwInfo):
         vga = "Nvidia"
     elif "intel" in hwInfo["vga"].lower():
         vga = "Intel (open-source)"
-    elif ["vmware", "virtualbox"] in hwInfo["vga"].lower():
+    elif any(substring in hwInfo["vga"].lower() for substring in ["vmware", "virtualbox"]):
         vga = "VMware / VirtualBox (open-source)"
     elif "amd" in hwInfo["vga"].lower():
         vga = "AMD / ATI (open-source)"
