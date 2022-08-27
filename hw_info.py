@@ -139,7 +139,7 @@ def create_disk_layouts(hwInfo):
     for d in disks:
         nd = d.split("\n")[0]
         print(nd)
-        print(re.findall("(?<=,\s)(.*)(?=bytes)",nd))
+        print(re.findall("(?<=,\s)(.*)(?=\sbytes)",nd))
 
   
 
