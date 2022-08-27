@@ -46,13 +46,13 @@ def get_hw():
 
 def create_json(hwInfo):
     print("TEST")
-    if "nvidia" in hwInfo["vga"].lower():
+    if "nvidia" in hwInfo["vga"].lower:
         vga = "Nvidia"
-    elif "intel" in hwInfo["vga"].lower():
+    elif "intel" in hwInfo["vga"].lower:
         vga = "Intel (open-source)"
-    elif ["vmware", "virtualbox"] in hwInfo["vga"].lower():
+    elif ["vmware", "virtualbox"] in hwInfo["vga"].lower:
         vga = "VMware / VirtualBox (open-source)"
-    elif "amd" in hwInfo["vga"].lower():
+    elif "amd" in hwInfo["vga"].lower:
         vga = "AMD / ATI (open-source)"
     else:
         vga = "All open-source (default)"
