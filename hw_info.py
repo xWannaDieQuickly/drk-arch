@@ -133,12 +133,7 @@ def create_creds(hwInfo):
 
 
 def create_disk_layouts(hwInfo):
-    for d in hwInfo["disks"].split("\n\n\n"):
-        print("------------------------")
-        print(d)
-        print("------------------------")
-    # for d in hwInfo["disks"]:
-    #     print(d)
+    
     diskLayouts = {
         "/dev/sda": {
             "partitions": [
@@ -174,13 +169,29 @@ def create_disk_layouts(hwInfo):
     return diskLayouts
 
 
-def main():
-    hwInfo = get_hw()
-    config = create_config(hwInfo=hwInfo)
-    creds = create_creds(hwInfo=hwInfo)
-    diskLayouts = create_disk_layouts(hwInfo=hwInfo)
+def debugging():
 
-    print(diskLayouts)
+    for d in psutil.disk_partitions():
+        print(d)
+
+    # for d in psutil.disk_partitions().split("\n\n\n"):
+    #     print("------------------------")
+    #     print(d)
+    #     print("------------------------")
+    # for d in hwInfo["disks"]:
+    #     print(d)
+
+
+def main():
+
+    debugging()
+
+    # hwInfo = get_hw()
+    # config = create_config(hwInfo=hwInfo)
+    # creds = create_creds(hwInfo=hwInfo)
+    # diskLayouts = create_disk_layouts(hwInfo=hwInfo)
+
+    # print(diskLayouts)
 
     # with open('config.json', 'w', encoding='utf-8') as f:
     #     json.dump(config, f, ensure_ascii=False, indent=4)
