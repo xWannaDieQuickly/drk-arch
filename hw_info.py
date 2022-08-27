@@ -133,21 +133,61 @@ def create_creds(hwInfo):
     return creds
 
 
+def create_disk_layouts(hwInfo):
+    print(hwInfo["disks"])
+    diskLayouts = {
+        "/dev/sda": {
+            "partitions": [
+                {
+                    "ESP": True,
+                    "encrypted": False,
+                    "format": True,
+                    "boot": True,
+                    "filesystem": {
+                        "format": "fat32"
+                    },
+                    "mountpoint": "/boot",
+                    "size": "512MB",
+                    "start": "6MB",
+                    "wipe": True
+                },
+                {
+                    "ESP": False,
+                    "filesystem": {
+                        "format": "ext4"
+                    },
+                    "format": True,
+                    "mountpoint": "/",
+                    "size": "100%",
+                    "start": "4514MB",
+                    "type": "primary",
+                    "wipe": False
+                }
+            ]
+        }
+    }
+
+    return diskLayouts
+
+
 def main():
     hwInfo = get_hw()
     config = create_config(hwInfo=hwInfo)
     creds = create_creds(hwInfo=hwInfo)
+    diskLayouts = create_disk_layouts(hwInfo=hwInfo)
 
-    with open('config.json', 'w', encoding='utf-8') as f:
-        json.dump(config, f, ensure_ascii=False, indent=4)
-        f.close()
+    print(diskLayouts)
 
-    with open('creds.json', 'w', encoding='utf-8') as f:
-        json.dump(creds, f, ensure_ascii=False, indent=4)
-        f.close()
+    # with open('config.json', 'w', encoding='utf-8') as f:
+    #     json.dump(config, f, ensure_ascii=False, indent=4)
+    #     f.close()
 
-    subprocess.run(["archinstall", "--config", "config.json", "--creds", "creds.json",
-                   "--dry-run"], check=True, text=True)
+    # with open('creds.json', 'w', encoding='utf-8') as f:
+    #     json.dump(creds, f, ensure_ascii=False, indent=4)
+    #     f.close()
+
+    # subprocess.run(["archinstall", "--config", "config.json", "--creds", "creds.json",
+    #                "--dry-run"], check=True, text=True)
 
 
 main()
