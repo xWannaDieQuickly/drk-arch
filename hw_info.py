@@ -86,21 +86,10 @@ def create_config(hwInfo):
         },
         "ntp": True,
         "packages": [
-            "efibootmgr",
-            "os-prober",
-            "mtools",
-            "git",
-            "wget",
-            "zsh",
-            "gnome",
-            "xorg-server",
-            "xorg-apps",
-            "gnome",
-            "gnome-extra",
-            "networkmanager"
+            
         ],
         "services": [],
-        "swap": True,
+        "swap": False,
         "sys-encoding": "utf-8",
         "sys-language": "de_DE@euro",
         "timezone": "Europe/Berlin"
@@ -142,7 +131,6 @@ def create_disk_layouts(hwInfo):
         size = int(re.findall("(?<=,\s)(.*)(?=\sbytes)", disk)[0])
         name = re.findall("(?<=Disk\s)(.*)(?=:)", disk)[0]
         diskSize.append(size)
-        print(size)
         disks[name] = size
     print(max(diskSize))
     for k, v in disks.items():
@@ -152,6 +140,11 @@ def create_disk_layouts(hwInfo):
     # for e in te:
     #     re.findall("(?<=,\s)(.*)(?=\sbytes)",nd)
     #     print(int(e))
+
+    with open('pkgs.json', 'r', encoding='utf-8') as f:
+        json.load(f, ensure_ascii=False, indent=4)
+        print(json.load(f, ensure_ascii=False, indent=4))
+        f.close()
 
     diskLayouts = {
         "/dev/sda": {
