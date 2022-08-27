@@ -206,8 +206,7 @@ def main():
     cred = f'{path}creds.json'
     disk_lay = f'{path}disk-layouts.json'
 
-    subprocess.run(["cd", "BackUp/"], check=True, text=True)
-    print(subprocess.run(["dir"], check=True, text=True).stdout)
+    print(subprocess.run(["dir", "BackUp/"], check=True, text=True).stdout)
 
     # subprocess.run(["archinstall",
     #                 "--config", json.dumps(config,
