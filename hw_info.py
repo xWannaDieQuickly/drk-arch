@@ -40,8 +40,8 @@ def get_hw():
             hardInfo["vga"] = e
     return hardInfo
 
-
-def create_json(hwInfo):
+# Create the config json
+def create_config(hwInfo):
 
     if hwInfo["vga"] is None:
         vga = "All open-source (default)"
@@ -111,15 +111,14 @@ def main():
     hwInfo = get_hw()
     print(json.dumps(hwInfo, indent=4))
 
-    config = create_json(hwInfo=hwInfo)
+    config = create_config(hwInfo=hwInfo)
     print("\n\n\n")
     print(json.dumps(config, indent=4))
 
-    # with open('config.json', 'w', encoding='utf-8') as f:
-    #     json.dump(jsb, f, ensure_ascii=False, indent=4)
+    with open('config.json', 'w', encoding='utf-8') as f:
+        json.dump(config, f, ensure_ascii=False, indent=4)
 
-    # subprocess.run(["echo", "myTest", string], check=True, text=True)
-    # subprocess.run(["archinstall", "--config" "config.json", "--dry-run"], check=True, text=True)
+    subprocess.run(["archinstall", "--config" "config.json", "--dry-run"], check=True, text=True)
 
 
 main()
