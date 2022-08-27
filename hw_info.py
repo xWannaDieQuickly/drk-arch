@@ -109,7 +109,7 @@ def create_config(hwInfo):
     return config
 
 
-def create_creds(hwinfo):
+def create_creds(hwInfo):
     creds = {
         "!root-password": "root",
         "!users": [
@@ -135,12 +135,8 @@ def create_creds(hwinfo):
 
 def main():
     hwInfo = get_hw()
-    print(json.dumps(hwInfo, indent=4))
-
     config = create_config(hwInfo=hwInfo)
     creds = create_creds(hwInfo=hwInfo)
-    print("\n\n\n")
-    print(json.dumps(config, indent=4))
 
     with open('config.json', 'w', encoding='utf-8') as f:
         json.dump(config, f, ensure_ascii=False, indent=4)
