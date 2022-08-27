@@ -38,8 +38,6 @@ def get_hw():
                             text=True, capture_output=True).stdout.splitlines():
         if "VGA" in e:
             hardInfo["vga"] = e
-    print(type(hardInfo["vga"]))
-    print(hardInfo["vga"])
     return hardInfo
 
 
@@ -58,8 +56,6 @@ def create_json(hwInfo):
     else:
         vga = "All open-source (default)"
 
-    print(vga)
-
     {
         "audio": "pipewire",
         "bootloader": "grub-install",
@@ -67,7 +63,7 @@ def create_json(hwInfo):
             "echo finished"
         ],
         "debug": False,
-        "gfx_driver": "Nvidia",
+        "gfx_driver": vga,
         "hostname": "myarch",
         "harddrives": [
             "/dev/sda"
@@ -107,7 +103,7 @@ def create_json(hwInfo):
 
 def main():
     hwInfo = get_hw()
-    # print(json.dumps(hwInfo, indent=4))
+    print(json.dumps(hwInfo, indent=4))
 
     create_json(hwInfo=hwInfo)
 
