@@ -24,7 +24,7 @@ def get_hw():
     # Operating system version
     hardInfo["operatingSystemVersion"] = platform.version()
     # MAC Adress
-    hardInfo["macAdress"] = getmac.get_mac_address()
+    hardInfo["macAddress"] = getmac.get_mac_address()
     # Disk Partitions
     hardInfo["diskPartitions"] = psutil.disk_partitions()
     # Firmware
@@ -56,7 +56,11 @@ def create_json(hwInfo):
     else:
         vga = "All open-source (default)"
 
-    {
+    if hwInfo["macAddress"] == "00:0c:29:92:0f:3c":
+        hostname = "Sebi"
+        print("Sebi")
+
+    config = {
         "audio": "pipewire",
         "bootloader": "grub-install",
         "custom-commands": [
@@ -64,7 +68,7 @@ def create_json(hwInfo):
         ],
         "debug": False,
         "gfx_driver": vga,
-        "hostname": "myarch",
+        "hostname": hostname,
         "harddrives": [
             "/dev/sda"
         ],
@@ -100,12 +104,16 @@ def create_json(hwInfo):
         "timezone": "Europe/Berlin"
     }
 
+    return config
+
 
 def main():
     hwInfo = get_hw()
     print(json.dumps(hwInfo, indent=4))
 
-    create_json(hwInfo=hwInfo)
+    config = create_json(hwInfo=hwInfo)
+    print("\n\n\n")
+    print(json.dumps(config, indent=4))
 
     # with open('config.json', 'w', encoding='utf-8') as f:
     #     json.dump(jsb, f, ensure_ascii=False, indent=4)
