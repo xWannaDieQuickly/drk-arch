@@ -45,6 +45,7 @@ def get_hw():
 
 def create_json(hwInfo):
     if ("intel" in hwInfo["processorType"].lower()):
+
         print("intel" + "-----" + hwInfo["processorType"].lower())
 
     {
@@ -94,8 +95,8 @@ def create_json(hwInfo):
 
 def main():
     # lspci
-    subprocess.run(["lspci"], check=True,
-                   text=True, capture_output=True)
+    print(subprocess.run(["lspci"], check=True,
+                   text=True, capture_output=True))
     # hwInfo = get_hw()
     # print(json.dumps(hwInfo, indent=4))
 
