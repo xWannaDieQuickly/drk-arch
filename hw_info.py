@@ -4,7 +4,6 @@ import os
 import json
 import subprocess
 import psutil
-from gpuinfo import GPUInfo
 
 
 # Read the hardware of the system
@@ -16,7 +15,7 @@ def get_hw():
     hardInfo["machineType"] = platform.machine()
     # Processor type
     hardInfo["processorType"] = platform.processor()
-    
+
     # Platform type
     hardInfo["platformType"] = platform.platform()
     # Operating system
@@ -94,8 +93,9 @@ def create_json(hwInfo):
 
 
 def main():
-    print(GPUInfo.get_info())
-    lspci
+    # lspci
+    subprocess.run(["lspci"], check=True,
+                   text=True, capture_output=True)
     # hwInfo = get_hw()
     # print(json.dumps(hwInfo, indent=4))
 
