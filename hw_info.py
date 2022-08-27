@@ -140,9 +140,9 @@ def create_disk_layouts(hwInfo):
     for d in disks:
         disk = d.split("\n")[0]
         print(disk)
-        print(re.match("(?<=Disk\s)(.*)(?=:)", disk))
-        te[re.match("(?<=Disk\s)(.*)(?=:)", disk)
-           ] = re.match("(?<=,\s)(.*)(?=\sbytes)", disk)
+        print(re.search("(?<=Disk\s)(.*)(?=:)", disk))
+        te[re.search("(?<=Disk\s)(.*)(?=:)", disk)
+           ] = re.search("(?<=,\s)(.*)(?=\sbytes)", disk)
         print(te)
     print(te)
 
