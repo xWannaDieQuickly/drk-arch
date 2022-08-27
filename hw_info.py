@@ -1,4 +1,5 @@
 import platform
+import time
 import getmac
 import os
 import json
@@ -199,6 +200,8 @@ def main():
     with open(f'{path}diskLayouts.json', 'w', encoding='utf-8') as f:
         json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
         f.close()
+
+    time.sleep(2)
 
     subprocess.run(["archinstall", "--config", f'{path}config.json',
                     "--creds", f'{path}creds.json',
