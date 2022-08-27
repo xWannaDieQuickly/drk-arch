@@ -136,12 +136,15 @@ def create_creds(hwInfo):
 def create_disk_layouts(hwInfo):
 
     disks = hwInfo["disks"].split("\n\n\n")
-    te = []
+    te = {}
     for d in disks:
-        te.append(d.split("\n")[0])
-        temp = d.split("\n")[0]
-        print(temp)
-        print(re.findall("(?<=Disk\s)(.*)(?=:)", temp))
+        disk = d.split("\n")[0]
+        print(disk)
+        print(re.findall("(?<=Disk\s)(.*)(?=:)", disk))
+        te[re.findall("(?<=Disk\s)(.*)(?=:)", disk)
+           ] = re.findall("(?<=,\s)(.*)(?=\sbytes)", disk)
+        print(te)
+    print(te)
 
     # for e in te:
     #     re.findall("(?<=,\s)(.*)(?=\sbytes)",nd)
