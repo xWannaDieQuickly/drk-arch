@@ -15,7 +15,6 @@ def get_hw():
     hardInfo["machineType"] = platform.machine()
     # Processor type
     hardInfo["processorType"] = platform.processor()
-
     # Platform type
     hardInfo["platformType"] = platform.platform()
     # Operating system
@@ -46,7 +45,7 @@ def get_hw():
 
 
 def create_json(hwInfo):
-
+    print("TEST")
     if "nvidia" in hwInfo["vga"].lower():
         vga = "Nvidia"
     elif "intel" in hwInfo["vga"].lower():
@@ -106,11 +105,6 @@ def create_json(hwInfo):
 
 
 def main():
-    lst = subprocess.run(["lspci"], check=True,
-                         text=True, capture_output=True).stdout.splitlines()
-    for e in lst:
-        if "VGA" in e:
-            print(e)
     hwInfo = get_hw()
     # print(json.dumps(hwInfo, indent=4))
 
