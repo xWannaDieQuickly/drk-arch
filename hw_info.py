@@ -63,8 +63,9 @@ def create_config(hwInfo):
         hostname = "Sebi"
 
     with open('data.json', 'r', encoding='utf-8') as f:
-        pkgs = json.load(f)["pkgs"]
-        services = json.load(f)["services"]
+        data = json.load(f)
+        pkgs = data["pkgs"]
+        services = data["services"]
         print(pkgs, services)
         f.close()
 
