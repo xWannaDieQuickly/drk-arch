@@ -63,7 +63,7 @@ def create_config(hwInfo):
         hostname = "Sebi"
 
     # Get pkgs and services to install
-    with open('data.json', 'r', encoding='utf-8') as f:
+    with open('BackUp/data.json', 'r', encoding='utf-8') as f:
         data = json.load(f)
         pkgs = data["pkgs"]
         services = data["services"]
@@ -185,21 +185,21 @@ def main():
     creds = create_creds(hwInfo=hwInfo)
     diskLayouts = create_disk_layouts(hwInfo=hwInfo)
 
-    with open('config.json', 'w', encoding='utf-8') as f:
+    with open('BackUp/config.json', 'w', encoding='utf-8') as f:
         json.dump(config, f, ensure_ascii=False, indent=4)
         f.close()
 
-    with open('creds.json', 'w', encoding='utf-8') as f:
+    with open('BackUp/creds.json', 'w', encoding='utf-8') as f:
         json.dump(creds, f, ensure_ascii=False, indent=4)
         f.close()
 
-    with open('diskLayouts.json', 'w', encoding='utf-8') as f:
+    with open('BackUp/diskLayouts.json', 'w', encoding='utf-8') as f:
         json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
         f.close()
 
-    subprocess.run(["archinstall", "--config", "config.json",
-                    "--creds", "creds.json",
-                    "--disk_layouts", "disk-layouts.json"
+    subprocess.run(["archinstall", "--config", "BackUp/config.json",
+                    "--creds", "BackUp/creds.json",
+                    "--disk_layouts", "BackUp/disk-layouts.json"
                    "--dry-run"], check=True, text=True)
 
 
