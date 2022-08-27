@@ -143,7 +143,7 @@ def create_disk_layouts(hwInfo):
 
     with open('pkgs.json', 'r', encoding='utf-8') as f:
         json.load(f, ensure_ascii=False, indent=4)
-        print(json.load(f, ensure_ascii=False, indent=4))
+        print(json.load(f, ensure_ascii=False))
         f.close()
 
     diskLayouts = {
