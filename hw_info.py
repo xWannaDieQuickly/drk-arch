@@ -201,15 +201,15 @@ def main():
         json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
         f.close()
 
-    time.sleep(2)
+    time.sleep(10)
 
     conf = f'{path}config.json'
     cred = f'{path}creds.json'
     disk_lay = f'{path}disk-layouts.json'
 
-    subprocess.run(["archinstall", "--config", "BackUp/config.json",
-                    "--creds", "BackUp/creds.json",
-                    "--disk_layouts", "BackUp/disk-layouts.json"
+    subprocess.run(["archinstall", "--config", config,
+                    "--creds", creds,
+                    "--disk_layouts", diskLayouts
                     ], check=True, text=True)
 
 
