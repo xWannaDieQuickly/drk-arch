@@ -189,6 +189,8 @@ def main():
     creds = create_creds(hwInfo=hwInfo)
     diskLayouts = create_disk_layouts(hwInfo=hwInfo)
 
+    print(subprocess.run(["dir", "BackUp/"], check=True, text=True).stdout)
+
     with open(f'{path}config.json', 'w', encoding='utf-8') as f:
         json.dump(config, f, ensure_ascii=False, indent=4)
         json.dumps(config, ensure_ascii=False, indent=4)
