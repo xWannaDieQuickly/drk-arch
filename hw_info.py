@@ -62,6 +62,11 @@ def create_config(hwInfo):
     if hwInfo["macAddress"] == "00:0c:29:92:0f:3c":
         hostname = "Sebi"
 
+    with open('data.json', 'r', encoding='utf-8') as f:
+        pkgs = json.load(f)
+        print(type(pkgs))
+        f.close()
+
     config = {
         "audio": "pipewire",
         "bootloader": "grub-install",
@@ -85,9 +90,7 @@ def create_config(hwInfo):
             "nic": "Use NetworkManager (necessary to configure internet graphically in GNOME and KDE)"
         },
         "ntp": True,
-        "packages": [
-            
-        ],
+        "packages": pkgs,
         "services": [],
         "swap": False,
         "sys-encoding": "utf-8",
@@ -140,11 +143,6 @@ def create_disk_layouts(hwInfo):
     # for e in te:
     #     re.findall("(?<=,\s)(.*)(?=\sbytes)",nd)
     #     print(int(e))
-
-    with open('pkgs.json', 'r', encoding='utf-8') as f:
-        # json.load(f, ensure_ascii=False, indent=4)
-        print(json.load(f))
-        f.close()
 
     diskLayouts = {
         "/dev/sda": {

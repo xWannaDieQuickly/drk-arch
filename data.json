@@ -12,5 +12,6 @@
         "gnome",
         "gnome-extra",
         "networkmanager"
-    ]
+    ],
+    "services": []
 }
