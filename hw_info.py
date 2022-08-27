@@ -142,7 +142,7 @@ def main():
         json.dump(config, f, ensure_ascii=False, indent=4)
         f.close()
 
-    with open('config.json', 'w', encoding='utf-8') as f:
+    with open('creds.json', 'w', encoding='utf-8') as f:
         json.dump(creds, f, ensure_ascii=False, indent=4)
         f.close()
 
