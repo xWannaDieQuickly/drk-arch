@@ -4,6 +4,7 @@ import os
 import json
 import subprocess
 import psutil
+import re
 
 
 # Read the hardware of the system
@@ -138,8 +139,9 @@ def create_disk_layouts(hwInfo):
     for d in disks:
         nd = d.split("\n")[0]
         print(nd)
+        print(re.findall("(?<=,)(.*)(?=bytes)",nd))
 
-    # print(nd)
+  
 
     diskLayouts = {
         "/dev/sda": {
