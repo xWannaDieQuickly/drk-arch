@@ -97,10 +97,8 @@ def main():
     # lspci
     lst = subprocess.run(["lspci"], check=True,
                          text=True, capture_output=True).stdout.splitlines()
-    print(len(lst))
-    print(type(lst))
-    print(repr(subprocess.run(["lspci"], check=True,
-                              text=True, capture_output=True).stdout))
+    for e in lst:
+        print(e)
     # hwInfo = get_hw()
     # print(json.dumps(hwInfo, indent=4))
 
