@@ -133,7 +133,12 @@ def create_creds(hwInfo):
 
 
 def create_disk_layouts(hwInfo):
-    
+
+    disks = hwInfo["disks"].split("\n\n\n")
+    disks = disks.split("\n")[0]
+
+    print(disks)
+
     diskLayouts = {
         "/dev/sda": {
             "partitions": [
@@ -169,27 +174,12 @@ def create_disk_layouts(hwInfo):
     return diskLayouts
 
 
-def debugging():
-
-    for d in psutil.disk_partitions():
-        print(d)
-
-    # for d in psutil.disk_partitions().split("\n\n\n"):
-    #     print("------------------------")
-    #     print(d)
-    #     print("------------------------")
-    # for d in hwInfo["disks"]:
-    #     print(d)
-
-
 def main():
 
-    debugging()
-
-    # hwInfo = get_hw()
-    # config = create_config(hwInfo=hwInfo)
-    # creds = create_creds(hwInfo=hwInfo)
-    # diskLayouts = create_disk_layouts(hwInfo=hwInfo)
+    hwInfo = get_hw()
+    config = create_config(hwInfo=hwInfo)
+    creds = create_creds(hwInfo=hwInfo)
+    diskLayouts = create_disk_layouts(hwInfo=hwInfo)
 
     # print(diskLayouts)
 
