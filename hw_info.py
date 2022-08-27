@@ -145,7 +145,7 @@ def create_disk_layouts(hwInfo):
         print(size)
         disks[name] = size
     print(max(diskSize))
-    for k, v in disks:
+    for k, v in disks.items():
         if v == max(diskSize):
             print(k, "...", v)
 
