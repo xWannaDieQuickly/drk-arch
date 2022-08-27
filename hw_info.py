@@ -45,7 +45,7 @@ def get_hw():
 def create_json(hwInfo):
     print("TEST")
 
-    if vga is None:
+    if hwInfo["vga"] is None:
         vga = "All open-source (default)"
     elif "nvidia" in hwInfo["vga"].lower:
         vga = "Nvidia"
