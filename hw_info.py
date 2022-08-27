@@ -63,7 +63,7 @@ def create_config(hwInfo):
         hostname = "Sebi"
 
     # Get pkgs and services to install
-    with open('BackUp/data.json', 'r', encoding='utf-8') as f:
+    with open('data.json', 'r', encoding='utf-8') as f:
         data = json.load(f)
         pkgs = data["pkgs"]
         services = data["services"]
@@ -197,9 +197,9 @@ def main():
         json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
         f.close()
 
-    subprocess.run(["archinstall", "--config", "BackUp/config.json",
-                    "--creds", "BackUp/creds.json",
-                    "--disk_layouts", "BackUp/disk-layouts.json"
+    subprocess.run(["archinstall", "--config", "config.json",
+                    "--creds", "creds.json",
+                    "--disk_layouts", "disk-layouts.json"
                    "--dry-run"], check=True, text=True)
 
 
