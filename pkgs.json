@@ -1,3 +1,16 @@
 {
-    "pkgs": []
+    "pkgs": [
+        "efibootmgr",
+        "os-prober",
+        "mtools",
+        "git",
+        "wget",
+        "zsh",
+        "gnome",
+        "xorg-server",
+        "xorg-apps",
+        "gnome",
+        "gnome-extra",
+        "networkmanager"
+    ]
 }
