@@ -38,16 +38,16 @@ def get_hw():
                             text=True, capture_output=True).stdout.splitlines():
         if "VGA" in e:
             hardInfo["vga"] = e
-
+    print(type(hardInfo["vga"]))
+    print(hardInfo["vga"])
     return hardInfo
 
 
 def create_json(hwInfo):
-    print("TEST")
 
     if hwInfo["vga"] is None:
         vga = "All open-source (default)"
-    elif "nvidia" in hwInfo["vga"].lower:
+    elif "nvidia" in hwInfo["vga"].lower():
         vga = "Nvidia"
     elif "intel" in hwInfo["vga"].lower:
         vga = "Intel (open-source)"
