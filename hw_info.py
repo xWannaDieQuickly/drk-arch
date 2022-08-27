@@ -10,6 +10,8 @@ import re
 path = "BackUp/"
 
 # Read the hardware of the system
+
+
 def get_hw():
     hardInfo = {}
     # Computer network name
@@ -65,7 +67,7 @@ def create_config(hwInfo):
         hostname = "Sebi"
 
     # Get pkgs and services to install
-    with open(f'{path}data.json', 'r', encoding='utf-8') as f:
+    with open('{path}data.json', 'r', encoding='utf-8') as f:
         data = json.load(f)
         pkgs = data["pkgs"]
         services = data["services"]
@@ -181,8 +183,6 @@ def create_disk_layouts(hwInfo):
 
 def main():
 
-    
-
     hwInfo = get_hw()
     config = create_config(hwInfo=hwInfo)
     creds = create_creds(hwInfo=hwInfo)
@@ -200,9 +200,9 @@ def main():
         json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
         f.close()
 
-    subprocess.run(["archinstall", "--config", f"{path}config.json",
-                    "--creds", f"{path}creds.json",
-                    "--disk_layouts", f"{path}disk-layouts.json",
+    subprocess.run(["archinstall", "--config", f'{path}config.json',
+                    "--creds", f'{path}creds.json',
+                    "--disk_layouts", f'{path}disk-layouts.json',
                    "--dry-run"], check=True, text=True)
 
 

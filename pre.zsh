@@ -1,3 +1,3 @@
 #!/bin/zsh
-pacman -Sy git python-pip --noconfirm
+pacman -Syy git python-pip --noconfirm
 pip install --no-input getmac psutil 

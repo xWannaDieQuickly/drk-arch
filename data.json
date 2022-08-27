@@ -17,5 +17,11 @@
         "gdm",
         "NetworkManager"
     ],
-    "commands": ["echo Im fucking done"]
+    "commands": [
+        "echo 'Im fucking done'",
+        "git clone https://aur.archlinux.org/teamviewer.git",
+        "cd teamviewer",
+        "makepkg -si"
+
+    ]
 }
