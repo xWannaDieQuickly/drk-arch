@@ -146,7 +146,7 @@ def main():
         json.dump(creds, f, ensure_ascii=False, indent=4)
         f.close()
 
-    subprocess.run(["archinstall", "--config", "config.json", "--creds", "creds.config",
+    subprocess.run(["archinstall", "--config", "config.json", "--creds", "creds.json",
                    "--dry-run"], check=True, text=True)
 
 
