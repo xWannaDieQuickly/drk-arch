@@ -134,7 +134,9 @@ def create_creds(hwInfo):
 
 def create_disk_layouts(hwInfo):
     for d in hwInfo["disks"].split("\n\n\n"):
+        print("------------------------")
         print(d)
+        print("------------------------")
     # for d in hwInfo["disks"]:
     #     print(d)
     diskLayouts = {
