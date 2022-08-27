@@ -202,8 +202,8 @@ def main():
 
     subprocess.run(["archinstall", "--config", f'{path}config.json',
                     "--creds", f'{path}creds.json',
-                    "--disk_layouts", f'{path}disk-layouts.json',
-                   "--dry-run"], check=True, text=True)
+                    "--disk_layouts", f'{path}disk-layouts.json'
+                    ], check=True, text=True)
 
 
 main()
