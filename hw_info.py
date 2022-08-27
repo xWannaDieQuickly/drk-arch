@@ -67,7 +67,7 @@ def create_config(hwInfo):
         hostname = "Sebi"
 
     # Get pkgs and services to install
-    with open('{path}data.json', 'r', encoding='utf-8') as f:
+    with open(f'{path}data.json', 'r', encoding='utf-8') as f:
         data = json.load(f)
         pkgs = data["pkgs"]
         services = data["services"]
