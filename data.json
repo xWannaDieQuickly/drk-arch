@@ -16,5 +16,6 @@
     "services": [
         "gdm",
         "NetworkManager"
-    ]
+    ],
+    "commands": ["echo Im fucking done"]
 }
