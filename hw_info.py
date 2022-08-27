@@ -41,6 +41,8 @@ def get_hw():
     return hardInfo
 
 # Create the config json
+
+
 def create_config(hwInfo):
 
     if hwInfo["vga"] is None:
@@ -118,7 +120,8 @@ def main():
     with open('config.json', 'w', encoding='utf-8') as f:
         json.dump(config, f, ensure_ascii=False, indent=4)
 
-    subprocess.run(["archinstall", "--config" "config.json", "--dry-run"], check=True, text=True)
+    subprocess.run(["archinstall", "--config", "config.json",
+                   "--dry-run"], check=True, text=True)
 
 
 main()
