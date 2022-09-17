@@ -217,15 +217,6 @@ def main():
     subprocess.run(["echo", disk_lay], check=True, text=True).stdout
     subprocess.run(["echo", "------------------"],
                    check=True, text=True).stdout
-    subprocess.run(["ls"], check=True, text=True).stdout
-    subprocess.run(["ls", "BackUp/"], check=True, text=True).stdout
-
-    with open(cred, 'r', encoding='utf-8') as f:
-        jsonDisk = json.load(f)
-        f.close()
-
-    subprocess.run(["echo", json.dumps(jsonDisk, indent=4)])
-
     subprocess.run(["archinstall",
                     "--config", conf,
                     "--creds", cred,
