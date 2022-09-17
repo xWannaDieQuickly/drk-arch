@@ -50,7 +50,7 @@ def get_hw():
 # Create the config json
 def create_config(hwInfo):
 
-    #hostname = "refe"
+    # hostname = "refe"
 
     # Check the VGA
     if hwInfo["vga"] is None:
@@ -77,7 +77,7 @@ def create_config(hwInfo):
         pkgs = data["pkgs"]
         services = data["services"]
         customCommands = data["commands"]
-        #print(pkgs, services)
+        # print(pkgs, services)
         f.close()
 
     config = {
@@ -214,21 +214,21 @@ def main():
     disk_lay = f'{path}disk-layouts.json'
     mytest = "TEST"
 
-   # print(subprocess.run(["echo", conf], check=True, text=True).stdout)
-   # print(subprocess.run(["echo", "------------------"],
-    #      check=True, text=True).stdout)
-    #print(subprocess.run(["echo", cred], check=True, text=True).stdout)
+    subprocess.run(["echo", conf], check=True, text=True).stdout
+    subprocess.run(["echo", "------------------"],
+                   check=True, text=True).stdout
+    subprocess.run(["echo", cred], check=True, text=True).stdout
 
-    #print(subprocess.run(["echo", "------------------"],
-     #                    check=True, text=True).stdout)
-    #print(subprocess.run(["echo", "conf"], check=True, text=True).stdout)
+    subprocess.run(["echo", "------------------"],
+                   check=True, text=True).stdout
+    subprocess.run(["echo", "conf"], check=True, text=True).stdout
 
-    print(subprocess.run(["echo", "------------------"],
-                         check=True, text=True).stdout)
+    subprocess.run(["echo", "------------------"],
+                   check=True, text=True).stdout
 
     subprocess.run(["dir", "BackUp/"], check=True, text=True).stdout
 
-   #subprocess.run(["archinstall",
+   # subprocess.run(["archinstall",
    #           "--config", conf,
    #           "--creds", cred,
    #           "--disk_layouts", disk_lay,
