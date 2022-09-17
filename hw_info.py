@@ -50,6 +50,8 @@ def get_hw():
 # Create the config json
 def create_config(hwInfo):
 
+    hostname = "refe"
+
     # Check the VGA
     if hwInfo["vga"] is None:
         vga = "All open-source (default)"
