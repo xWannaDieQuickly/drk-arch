@@ -225,7 +225,7 @@ def main():
         jsonDisk = json.load(f)
         f.close()
 
-    subprocess.run(["echo", jsonDisk])
+    subprocess.run(["echo", json.dumps(jsonDisk, indent=4)])
 
     #subprocess.run(["archinstall",
     #                "--config", conf,
