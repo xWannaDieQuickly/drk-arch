@@ -214,7 +214,7 @@ def main():
 
     print(conf, cred, disk_lay)
 
-   # print(subprocess.run(["dir", "BackUp/"], check=True, text=True).stdout)
+    print(subprocess.run(["dir", "BackUp/"], check=True, text=True).stdout)
 
     #print(subprocess.run(["archinstall",
     #                "--config", conf,
