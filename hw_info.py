@@ -8,7 +8,7 @@ import psutil
 import re
 
 
-path = "BackUp/"
+path = "/root/BackUp/"
 
 # Read the hardware of the system
 
@@ -226,15 +226,11 @@ def main():
 
     subprocess.run(["echo", json.dumps(jsonDisk, indent=4)])
 
-    try:
-        subprocess.run(["archinstall",
-                        "--config", conf,
-                        "--creds", cred,
-                        "--disk_layouts", disk_lay,
-                        ], check=True, text=True, stderr=subprocess.STDOUT)
-    except subprocess.CalledProcessError as e:
-        raise RuntimeError("command '{}' return with error (code {}): {}".format(
-            e.cmd, e.returncode, e.output))
+    subprocess.run(["archinstall",
+                    "--config", conf,
+                    "--creds", cred,
+                    "--disk_layouts", disk_lay,
+                    ], check=True, text=True, stderr=subprocess.STDOUT)
 
 
 main()
