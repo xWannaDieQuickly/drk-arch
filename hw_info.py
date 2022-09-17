@@ -212,8 +212,9 @@ def main():
     conf = f'{path}config.json'
     cred = f'{path}creds.json'
     disk_lay = f'{path}disk-layouts.json'
+    mytest = "TEST"
 
-    print(subprocess.run(["echo", conf], check=True, text=True).stdout)
+    print(subprocess.run(["echo", mytest], check=True, text=True).stdout)
     print(subprocess.run(["echo", "------------------"], check=True, text=True).stdout)
     print(subprocess.run(["echo", "conf"], check=True, text=True).stdout)
 
