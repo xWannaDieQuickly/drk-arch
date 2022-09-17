@@ -198,7 +198,6 @@ def main():
 
     with open(f'{path}config.json', 'w', encoding='utf-8') as f:
         json.dump(config, f, ensure_ascii=False, indent=4)
-        json.dumps(config, ensure_ascii=False, indent=4)
         f.close()
 
     with open(f'{path}creds.json', 'w', encoding='utf-8') as f:
@@ -209,30 +208,27 @@ def main():
         json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
         f.close()
 
-    conf = f"{path}config.json"
+    conf = f'{path}config.json'
     cred = f'{path}creds.json'
     disk_lay = f'{path}disk-layouts.json'
-    mytest = "TEST"
 
     subprocess.run(["echo", conf], check=True, text=True).stdout
-    subprocess.run(["echo", "------------------"],
-                   check=True, text=True).stdout
     subprocess.run(["echo", cred], check=True, text=True).stdout
-
-    subprocess.run(["echo", "------------------"],
-                   check=True, text=True).stdout
-    subprocess.run(["echo", "conf"], check=True, text=True).stdout
-
+    subprocess.run(["echo", disk_lay], check=True, text=True).stdout
     subprocess.run(["echo", "------------------"],
                    check=True, text=True).stdout
 
-    subprocess.run(["dir", "BackUp/"], check=True, text=True).stdout
+    with open(f'{path}disk-layouts.json', 'w', encoding='utf-8') as f:
+        jsonDisk = json.load(f, indent=4)
+        f.close()
 
-    subprocess.run(["archinstall",
-                    "--config", conf,
-                    "--creds", cred,
-                    "--disk_layouts", disk_lay,
-                    ], check=True, text=True)
+    subprocess.run(["echo", jsonDisk])
 
+    #subprocess.run(["archinstall",
+    #                "--config", conf,
+    #                "--creds", cred,
+    #                "--disk_layouts", disk_lay,
+    #                ], check=True, text=True).stdout
+#
 
 main()
