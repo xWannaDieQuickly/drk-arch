@@ -66,6 +66,8 @@ def create_config(hwInfo):
 
     if hwInfo["macAddress"] == "00:0c:29:92:0f:3c":
         hostname = "Sebi"
+    else:
+        hostname = "NONE"
 
     # Get pkgs and services to install
     with open(f'{path}data.json', 'r', encoding='utf-8') as f:
@@ -210,14 +212,11 @@ def main():
 
     print(subprocess.run(["dir", "BackUp/"], check=True, text=True).stdout)
 
-    # subprocess.run(["archinstall",
-    #                 "--config", json.dumps(config,
-    #                                        ensure_ascii=False, indent=4),
-    #                 "--creds", json.dumps(creds,
-    #                                       ensure_ascii=False, indent=4),
-    #                 "--disk_layouts", json.dumps(diskLayouts,
-    #                                              ensure_ascii=False, indent=4),
-    #                 ], check=True, text=True)
+    print(subprocess.run(["archinstall",
+                    "--config", conf,
+                    "--creds", cred,
+                    "--disk_layouts", disk_lay,
+                    ], check=True, text=True).stdout)
 
 
 main()
