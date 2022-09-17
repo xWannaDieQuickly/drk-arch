@@ -217,8 +217,11 @@ def main():
     subprocess.run(["echo", disk_lay], check=True, text=True).stdout
     subprocess.run(["echo", "------------------"],
                    check=True, text=True).stdout
+    subprocess.run(["ls"], check=True, text=True).stdout
+    subprocess.run(["ls", "BackUp/"], check=True, text=True).stdout
+    
 
-    with open(f'{path}disk-layouts.json', 'w', encoding='utf-8') as f:
+    with open(f'{path}disk-layouts.json', 'r', encoding='utf-8') as f:
         jsonDisk = json.load(f, indent=4)
         f.close()
 
