@@ -77,7 +77,7 @@ def create_config(hwInfo):
         pkgs = data["pkgs"]
         services = data["services"]
         customCommands = data["commands"]
-        print(pkgs, services)
+        #print(pkgs, services)
         f.close()
 
     config = {
@@ -146,10 +146,13 @@ def create_disk_layouts(hwInfo):
         name = re.findall("(?<=Disk\s)(.*)(?=:)", disk)[0]
         diskSize.append(size)
         disks[name] = size
-    print(max(diskSize))
-    for k, v in disks.items():
-        if v == max(diskSize):
-            print(k, "...", v)
+
+    # DEBUG
+    # print disc sizes
+    # print(max(diskSize))
+    # for k, v in disks.items():
+    #    if v == max(diskSize):
+    #         print(k, "...", v)
 
     diskLayouts = {
         "/dev/sda": {
@@ -193,8 +196,6 @@ def main():
     creds = create_creds(hwInfo=hwInfo)
     diskLayouts = create_disk_layouts(hwInfo=hwInfo)
 
-    print(subprocess.run(["dir", "BackUp/"], check=True, text=True).stdout)
-
     with open(f'{path}config.json', 'w', encoding='utf-8') as f:
         json.dump(config, f, ensure_ascii=False, indent=4)
         json.dumps(config, ensure_ascii=False, indent=4)
@@ -212,17 +213,19 @@ def main():
     cred = f'{path}creds.json'
     disk_lay = f'{path}disk-layouts.json'
 
-    print(conf, cred, disk_lay)
-
     print(subprocess.run(["echo", conf], check=True, text=True).stdout)
+    print(subprocess.run(["echo", "------------------"], check=True, text=True).stdout)
+    print(subprocess.run(["echo", "conf"], check=True, text=True).stdout)
 
-    print(subprocess.run(["dir", "BackUp/"], check=True, text=True).stdout)
 
-    #print(subprocess.run(["archinstall",
+
+    #print(subprocess.run(["dir", "BackUp/"], check=True, text=True).stdout)
+
+    # print(subprocess.run(["archinstall",
     #                "--config", conf,
-     #               "--creds", cred,
-     #               "--disk_layouts", disk_lay,
-       #             ], check=True, text=True).stdout)
+    #               "--creds", cred,
+    #               "--disk_layouts", disk_lay,
+    #             ], check=True, text=True).stdout)
 
 
 main()
