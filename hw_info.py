@@ -228,11 +228,11 @@ def main():
 
     subprocess.run(["dir", "BackUp/"], check=True, text=True).stdout
 
-   # subprocess.run(["archinstall",
-   #           "--config", conf,
-   #           "--creds", cred,
-   #           "--disk_layouts", disk_lay,
-   #        ], check=True, text=True)
+    subprocess.run(["archinstall",
+                    "--config", conf,
+                    "--creds", cred,
+                    "--disk_layouts", disk_lay,
+                    ], check=True, text=True)
 
 
 main()
