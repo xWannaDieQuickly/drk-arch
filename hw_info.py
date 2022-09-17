@@ -8,7 +8,7 @@ import psutil
 import re
 
 
-path = "/root/BackUp/"
+path = "BackUp/"
 
 # Read the hardware of the system
 
@@ -208,9 +208,9 @@ def main():
         json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
         f.close()
 
-    conf = f'{path}config.json'
-    cred = f'{path}creds.json'
-    disk_lay = f'{path}disk-layouts.json'
+    conf = 'config.json'
+    cred = 'creds.json'
+    disk_lay = 'disk-layouts.json'
 
     subprocess.run(["echo", conf], check=True, text=True).stdout
     subprocess.run(["echo", cred], check=True, text=True).stdout
