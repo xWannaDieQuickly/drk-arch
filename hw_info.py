@@ -222,7 +222,7 @@ def main():
     
 
     with open(f'{path}disk-layouts.json', 'r', encoding='utf-8') as f:
-        jsonDisk = json.load(f, indent=4)
+        jsonDisk = json.load(f)
         f.close()
 
     subprocess.run(["echo", jsonDisk])
