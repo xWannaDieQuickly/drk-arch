@@ -221,7 +221,7 @@ def main():
     subprocess.run(["ls", "BackUp/"], check=True, text=True).stdout
     
 
-    with open(f'{path}disk-layouts.json', 'r', encoding='utf-8') as f:
+    with open(cred, 'r', encoding='utf-8') as f:
         jsonDisk = json.load(f)
         f.close()
 
