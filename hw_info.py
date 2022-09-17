@@ -230,7 +230,7 @@ def main():
     subprocess.run(["archinstall",
                     #"--config", conf,
                     "--creds", cred,
-                    #"--disk_layouts", disk_lay,
+                    "--disk_layouts", disk_lay,
                     ], check=True, text=True)
 
 
