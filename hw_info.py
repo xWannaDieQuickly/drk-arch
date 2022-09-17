@@ -209,24 +209,30 @@ def main():
         json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
         f.close()
 
-    conf = f'{path}config.json'
+    conf = f"{path}config.json"
     cred = f'{path}creds.json'
     disk_lay = f'{path}disk-layouts.json'
     mytest = "TEST"
 
-    print(subprocess.run(["echo", mytest], text=True).stdout)
-    print(subprocess.run(["echo", "------------------"], check=True, text=True).stdout)
+    print(subprocess.run(["echo", conf], check=True, text=True).stdout)
+    print(subprocess.run(["echo", "------------------"],
+          check=True, text=True).stdout)
     print(subprocess.run(["echo", "conf"], check=True, text=True).stdout)
 
-    print(subprocess.run(["echo", "------------------"], check=True, text=True).stdout)
+    print(subprocess.run(["echo", "------------------"],
+                         check=True, text=True).stdout)
+    print(subprocess.run(["echo", "conf"], check=True, text=True).stdout)
+    
+    print(subprocess.run(["echo", "------------------"],
+                         check=True, text=True).stdout)
 
-    print(subprocess.run(["dir", "BackUp/"], check=True).stdout)
+    print(subprocess.run(["dir", "BackUp/"], check=True, text=True).stdout)
 
-    # print(subprocess.run(["archinstall",
-    #                "--config", conf,
-    #               "--creds", cred,
-    #               "--disk_layouts", disk_lay,
-    #             ], check=True, text=True).stdout)
+# print(subprocess.run(["archinstall",
+#                "--config", conf,
+#               "--creds", cred,
+#               "--disk_layouts", disk_lay,
+#             ], check=True, text=True).stdout)
 
 
 main()
