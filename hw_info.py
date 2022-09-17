@@ -218,7 +218,7 @@ def main():
     print(subprocess.run(["echo", "------------------"], check=True, text=True).stdout)
     print(subprocess.run(["echo", "conf"], check=True, text=True).stdout)
 
-
+    print(subprocess.run(["echo", "------------------"], check=True, text=True).stdout)
 
     print(subprocess.run(["dir", "BackUp/"], check=True).stdout)
 
