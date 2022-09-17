@@ -227,11 +227,11 @@ def main():
 
     subprocess.run(["echo", json.dumps(jsonDisk, indent=4)])
 
-    #subprocess.run(["archinstall",
-    #                "--config", conf,
-    #                "--creds", cred,
-    #                "--disk_layouts", disk_lay,
-    #                ], check=True, text=True).stdout
-#
+    subprocess.run(["archinstall",
+                    #"--config", conf,
+                    "--creds", cred,
+                    #"--disk_layouts", disk_lay,
+                    ], check=True, text=True)
+
 
 main()
