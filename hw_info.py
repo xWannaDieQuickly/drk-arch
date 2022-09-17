@@ -219,7 +219,6 @@ def main():
                    check=True, text=True).stdout
     subprocess.run(["ls"], check=True, text=True).stdout
     subprocess.run(["ls", "BackUp/"], check=True, text=True).stdout
-    
 
     with open(cred, 'r', encoding='utf-8') as f:
         jsonDisk = json.load(f)
@@ -227,11 +226,15 @@ def main():
 
     subprocess.run(["echo", json.dumps(jsonDisk, indent=4)])
 
-    subprocess.run(["archinstall",
-                    "--config", conf,
-                    "--creds", cred,
-                    #"--disk_layouts", disk_lay,
-                    ], check=True, text=True)
+    try:
+        subprocess.run(["archinstall",
+                        "--config", conf,
+                        "--creds", cred,
+                        "--disk_layouts", disk_lay,
+                        ], check=True, text=True, stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as e:
+        raise RuntimeError("command '{}' return with error (code {}): {}".format(
+            e.cmd, e.returncode, e.output))
 
 
 main()
