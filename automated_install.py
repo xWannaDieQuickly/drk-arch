@@ -101,7 +101,6 @@ def create_config(hwInfo):
             "nic": "nm"
         },
         "ntp": True,
-        "profile": "",
         "packages": pkgs,
         "services": ["gdm"],
         "swap": True,
