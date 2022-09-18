@@ -216,12 +216,12 @@ def main():
                     "--config", json.dumps(config,
                                            ensure_ascii=False,
                                            indent=4),
-                   # "--creds", json.dumps(creds,
-                   #                      ensure_ascii=False,
-                   #                      indent=4),
-                   #"--disk_layouts", json.dumps(diskLayouts,
-                   #                             ensure_ascii=False,
-                   #                             indent=4),
+                   "--creds", json.dumps(creds,
+                                         ensure_ascii=False,
+                                         indent=4),
+                    # "--disk_layouts", json.dumps(diskLayouts,
+                    #                             ensure_ascii=False,
+                    #                             indent=4),
                     ], check=True, text=True)
 
 
