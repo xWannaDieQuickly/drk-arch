@@ -104,7 +104,6 @@ def create_config(hwInfo):
         "packages": pkgs,
         "services": ["gdm",],
         "swap": True,
-        "profile":"",
         "sys-encoding": "utf-8",
         "sys-language": "de_DE@euro",
         "timezone": "Europe/Berlin"
