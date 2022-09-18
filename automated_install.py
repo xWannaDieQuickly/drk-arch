@@ -89,7 +89,7 @@ def create_config(hwInfo):
         "gfx_driver": vga,
         "hostname": hostname,
         "harddrives": [
-            "dev/sda"
+            "/dev/sda"
         ],
         "kernels": [
             "linux"
