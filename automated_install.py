@@ -81,6 +81,7 @@ def create_config(hwInfo):
         f.close()
 
     config = {
+        "dry-run": True,
         "audio": "pipewire",
         "bootloader": "grub-install",
         "custom-commands": customCommands,
@@ -88,7 +89,7 @@ def create_config(hwInfo):
         "gfx_driver": vga,
         "hostname": hostname,
         "harddrives": [
-            "/dev/sda"
+
         ],
         "kernels": [
             "linux"
@@ -97,13 +98,13 @@ def create_config(hwInfo):
         "keyboard-language": "de",
         "mirror-region": "Worldwide",
         "nic": {
-            "NetworkManager": True,
-            "nic": "Use NetworkManager (necessary to configure internet graphically in GNOME and KDE)"
+            "type": "NM"
         },
         "ntp": True,
         "packages": pkgs,
-        "services": [],
-        "swap": False,
+        "services": ["gdm",],
+        "swap": True,
+        "profile":"",
         "sys-encoding": "utf-8",
         "sys-language": "de_DE@euro",
         "timezone": "Europe/Berlin"
@@ -166,12 +167,11 @@ def create_disk_layouts(hwInfo):
                         "format": "fat32"
                     },
                     "mountpoint": "/boot",
-                    "size": "512MB",
-                    "start": "6MB",
+                    "size": "203MiB",
+                    "start": "3MiB",
                     "wipe": True
                 },
                 {
-                    "ESP": False,
                     "filesystem": {
                         "format": "ext4"
                     },
@@ -195,34 +195,34 @@ def main():
     config = create_config(hwInfo=hwInfo)
     creds = create_creds(hwInfo=hwInfo)
     diskLayouts = create_disk_layouts(hwInfo=hwInfo)
-    #
-    # with open(f'{path}config.json', 'w', encoding='utf-8') as f:
-    #     json.dump(config, f, ensure_ascii=False, indent=4)
-    #     f.close()
-    #
-    # with open(f'{path}creds.json', 'w', encoding='utf-8') as f:
-    #     json.dump(creds, f, ensure_ascii=False, indent=4)
-    #     f.close()
-    #
-    # with open(f'{path}disk-layouts.json', 'w', encoding='utf-8') as f:
-    #     json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
-    #     f.close()
+
+    with open(f'{path}config.json', 'w', encoding='utf-8') as f:
+        json.dump(config, f, ensure_ascii=False, indent=4)
+        f.close()
+
+    with open(f'{path}creds.json', 'w', encoding='utf-8') as f:
+        json.dump(creds, f, ensure_ascii=False, indent=4)
+        f.close()
+
+    with open(f'{path}disk-layouts.json', 'w', encoding='utf-8') as f:
+        json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
+        f.close()
 
     conf = f'{path}config.json'
     cred = f'{path}creds.json'
     disk_lay = f'{path}disk-layouts.json'
 
-    subprocess.run(["archinstall",
-                    "--config", json.dumps(config,
-                                           ensure_ascii=False,
-                                           indent=4),
-                    "--disk-layout", json.dumps(diskLayouts,
-                                                ensure_ascii=False,
-                                                indent=4),
-                    # "--creds", json.dumps(creds,
-                    #                    ensure_ascii=False,
-                    #                   indent=4),
-                    ], check=True, text=True)
+   # subprocess.run(["archinstall",
+   #                 "--config", json.dumps(config,
+   #                                        ensure_ascii=False,
+   #                                        indent=4),
+   #                 "--disk-layout", json.dumps(diskLayouts,
+   #                                             ensure_ascii=False,
+   #                                             indent=4),
+   #                 # "--creds", json.dumps(creds,
+   #                 #                    ensure_ascii=False,
+   #                 #                   indent=4),
+   #                 ], check=True, text=True)
 
 
 main()

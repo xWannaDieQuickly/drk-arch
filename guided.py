@@ -1,61 +1,75 @@
 import archinstall
 
-import json
-import urllib.request
-
-__packages__ = ['nano', 'wget', 'git']
-
-if __name__ == '52-54-00-12-34-56':
-	awesome = archinstall.Application(archinstall.storage['installation_session'], 'postgresql')
-	awesome.install()
-
-
-# Unmount and close previous runs (Mainly only used for re-runs, but won't hurt.)
-archinstall.sys_command(f'umount -R /mnt', suppress_errors=True)
-archinstall.sys_command(f'cryptsetup close /dev/mapper/luksloop', suppress_errors=True)
-
 # Select a harddrive and a disk password
-harddrive = archinstall.all_blockdevices()['/dev/sda']
-disk_password = '1234'
+from archinstall import User
 
-with archinstall.Filesystem(harddrive) as fs:
-	# Use the entire disk instead of setting up partitions on your own
-	fs.use_entire_disk('luks2')
+archinstall.log("Minimal only supports:")
+archinstall.log(" * Being installed to a single disk")
 
-	if harddrive.partition[1].size == '512M':
-		raise OSError("Trying to encrypt the boot partition for Pete's sake..")
-	harddrive.partition[0].format('fat32')
+if archinstall.arguments.get('help', None):
+	archinstall.log(" - Optional disk encryption via --!encryption-password=<password>")
+	archinstall.log(" - Optional filesystem type via --filesystem=<fs type>")
+	archinstall.log(" - Optional systemd network via --network")
 
-	with archinstall.luks2(harddrive.partition[1], 'luksloop', disk_password) as unlocked_device:
-		unlocked_device.format('btrfs')
+archinstall.arguments['harddrive'] = archinstall.select_disk(archinstall.all_blockdevices())
 
-		with archinstall.Installer(
-				unlocked_device,
-				boot_partition=harddrive.partition[0],
-				hostname="testmachine"
-		) as installation:
-			if installation.minimal_installation():
-				installation.add_bootloader()
 
-				installation.add_additional_packages(__packages__)
-				installation.install_profile('awesome')
+def install_on(mountpoint):
+	# We kick off the installer by telling it where the
+	with archinstall.Installer(mountpoint) as installation:
+		# Strap in the base system, add a boot loader and configure
+		# some other minor details as specified by this profile and user.
+		if installation.minimal_installation():
+			installation.set_hostname('minimal-arch')
+			installation.add_bootloader()
 
-				user = archinstall.User('devel', 'devel', False)
-				installation.create_users(user)
-				installation.user_set_pw('root', 'toor')
+			# Optionally enable networking:
+			if archinstall.arguments.get('network', None):
+				installation.copy_iso_network_config(enable_services=True)
 
-				print(f'Submitting {archinstall.__version__}: success')
+			installation.add_additional_packages(['nano', 'wget', 'git'])
+			installation.install_profile('minimal')
 
-				conditions = {
-					"project": "archinstall",
-					"profile": "52-54-00-12-34-56",
-					"status": "success",
-					"version": archinstall.__version__
-				}
-				req = urllib.request.Request("https://api.archlinux.life/build/success",
-												data=json.dumps(conditions).encode('utf8'),
-												headers={'content-type': 'application/json'})
-				try:
-					urllib.request.urlopen(req, timeout=5)
-				except:
-					pass
+			user = User('devel', 'devel', False)
+			installation.create_users(user)
+
+	# Once this is done, we output some useful information to the user
+	# And the installation is complete.
+	archinstall.log("There are two new accounts in your installation after reboot:")
+	archinstall.log(" * root (password: airoot)")
+	archinstall.log(" * devel (password: devel)")
+
+
+if archinstall.arguments['harddrive']:
+	archinstall.arguments['harddrive'].keep_partitions = False
+
+	print(f" ! Formatting {archinstall.arguments['harddrive']} in ", end='')
+	archinstall.do_countdown()
+
+	# First, we configure the basic filesystem layout
+	with archinstall.Filesystem(archinstall.arguments['harddrive'], archinstall.GPT) as fs:
+		# We use the entire disk instead of setting up partitions on your own
+		if archinstall.arguments['harddrive'].keep_partitions is False:
+			fs.use_entire_disk(root_filesystem_type=archinstall.arguments.get('filesystem', 'btrfs'))
+
+		boot = fs.find_partition('/boot')
+		root = fs.find_partition('/')
+
+		boot.format('fat32')
+
+		# We encrypt the root partition if we got a password to do so with,
+		# Otherwise we just skip straight to formatting and installation
+		if archinstall.arguments.get('!encryption-password', None):
+			root.encrypted = True
+			root.encrypt(password=archinstall.arguments.get('!encryption-password', None))
+
+			with archinstall.luks2(root, 'luksloop', archinstall.arguments.get('!encryption-password', None)) as unlocked_root:
+				unlocked_root.format(root.filesystem)
+				unlocked_root.mount('/mnt')
+		else:
+			root.format(root.filesystem)
+			root.mount('/mnt')
+
+		boot.mount('/mnt/boot')
+
+install_on('/mnt')
