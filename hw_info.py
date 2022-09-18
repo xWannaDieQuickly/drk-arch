@@ -193,8 +193,8 @@ def main():
 
     hwInfo = get_hw()
     config = create_config(hwInfo=hwInfo)
-    # creds = create_creds(hwInfo=hwInfo)
-    # diskLayouts = create_disk_layouts(hwInfo=hwInfo)
+    creds = create_creds(hwInfo=hwInfo)
+    diskLayouts = create_disk_layouts(hwInfo=hwInfo)
     #
     # with open(f'{path}config.json', 'w', encoding='utf-8') as f:
     #     json.dump(config, f, ensure_ascii=False, indent=4)
@@ -216,8 +216,12 @@ def main():
                     "--config", json.dumps(config,
                                            ensure_ascii=False,
                                            indent=4),
-                    #"--creds", cred,
-                    #"--disk_layouts", disk_lay,
+                    "--creds", json.dumps(creds,
+                                          ensure_ascii=False,
+                                          indent=4),
+                    "--disk_layouts", json.dumps(diskLayouts,
+                                                 ensure_ascii=False,
+                                                 indent=4),
                     ], check=True, text=True)
 
 
