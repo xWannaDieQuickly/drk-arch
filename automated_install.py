@@ -98,11 +98,12 @@ def create_config(hwInfo):
         "keyboard-language": "de",
         "mirror-region": "Worldwide",
         "nic": {
-            "type": "nm"
+            "NetworkManager": True,
+            "nic": "Use NetworkManager (necessary to configure internet graphically in GNOME and KDE)"
         },
         "ntp": True,
         "packages": pkgs,
-        "services": ["gdm",],
+        "services": ["gdm"],
         "swap": True,
         "sys-encoding": "utf-8",
         "sys-language": "de_DE@euro",
