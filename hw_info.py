@@ -191,22 +191,22 @@ def create_disk_layouts(hwInfo):
 
 def main():
 
-    hwInfo = get_hw()
-    config = create_config(hwInfo=hwInfo)
-    creds = create_creds(hwInfo=hwInfo)
-    diskLayouts = create_disk_layouts(hwInfo=hwInfo)
-
-    with open(f'{path}config.json', 'w', encoding='utf-8') as f:
-        json.dump(config, f, ensure_ascii=False, indent=4)
-        f.close()
-
-    with open(f'{path}creds.json', 'w', encoding='utf-8') as f:
-        json.dump(creds, f, ensure_ascii=False, indent=4)
-        f.close()
-
-    with open(f'{path}disk-layouts.json', 'w', encoding='utf-8') as f:
-        json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
-        f.close()
+   # hwInfo = get_hw()
+   # config = create_config(hwInfo=hwInfo)
+   # creds = create_creds(hwInfo=hwInfo)
+   # diskLayouts = create_disk_layouts(hwInfo=hwInfo)
+    #
+   # with open(f'{path}config.json', 'w', encoding='utf-8') as f:
+   #     json.dump(config, f, ensure_ascii=False, indent=4)
+   #     f.close()
+    #
+   # with open(f'{path}creds.json', 'w', encoding='utf-8') as f:
+   #     json.dump(creds, f, ensure_ascii=False, indent=4)
+   #     f.close()
+    #
+   # with open(f'{path}disk-layouts.json', 'w', encoding='utf-8') as f:
+   #     json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
+   #     f.close()
 
     conf = f'{path}config.json'
     cred = f'{path}creds.json'
@@ -216,7 +216,7 @@ def main():
                     "--config", conf,
                     "--creds", cred,
                     "--disk_layouts", disk_lay,
-                    ], check=True, text=True, stderr=subprocess.STDOUT)
+                    ], check=True, text=True)
 
 
 main()

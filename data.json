@@ -1,5 +1,13 @@
 {
-    "pkgs": [
+    "pkgs": [],
+    "services": [
+        "gdm",
+        "NetworkManager"
+    ],
+    "commands": [
+        "echo 'Im fucking done'"
+    ],
+    "none": [
         "efibootmgr",
         "os-prober",
         "mtools",
@@ -43,12 +51,5 @@
         "xorg-server",
         "xorg-apps",
         "networkmanager"
-    ],
-    "services": [
-        "gdm",
-        "NetworkManager"
-    ],
-    "commands": [
-        "echo 'Im fucking done'"
     ]
 }

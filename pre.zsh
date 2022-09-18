@@ -2,11 +2,9 @@
 pacman -S git python-pip --noconfirm
 pip uninstall archinstall
 git clone https://github.com/archlinux/archinstall
-pip install setuptools
+pip install setuptools getmac psutil --no-input
 cd archinstall
-pip install setuptools --no-input
 python setup.py install
-pip install getmac psutil --no-input
-chmod +x BackUp/hw-info.py
-python BackUp/hw-info.py
+chmod +x BackUp/hw_info.py
+python BackUp/hw_info.py
 #archinstall --config BackUp/config.json --creds BackUp/creds.json --disk_layouts BackUp/disk-layouts.json
