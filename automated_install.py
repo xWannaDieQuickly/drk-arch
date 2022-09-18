@@ -89,7 +89,7 @@ def create_config(hwInfo):
         "gfx_driver": vga,
         "hostname": hostname,
         "harddrives": [
-
+            "dev/sda"
         ],
         "kernels": [
             "linux"
@@ -115,6 +115,7 @@ def create_config(hwInfo):
 def create_creds(hwInfo):
     creds = {
         "!root-password": "root",
+        "!encryption-password": "root",
         "!users": [
             {
                 "username": "sebi",
@@ -158,28 +159,29 @@ def create_disk_layouts(hwInfo):
         "/dev/sda": {
             "partitions": [
                 {
-                    "ESP": True,
-                    "encrypted": False,
-                    "format": True,
                     "boot": True,
+                    "encrypted": False,
                     "filesystem": {
                         "format": "fat32"
                     },
                     "mountpoint": "/boot",
                     "size": "203MiB",
                     "start": "3MiB",
+                    "type": "primary",
                     "wipe": True
                 },
                 {
+                    "boot": False,
+                    "encrypted": True,
                     "filesystem": {
-                        "format": "ext4"
+                        "format": "ext4",
+                        "mount_options": []
                     },
-                    "format": True,
                     "mountpoint": "/",
                     "size": "100%",
-                    "start": "4514MB",
+                    "start": "205MiB",
                     "type": "primary",
-                    "wipe": False
+                    "wipe": True
                 }
             ]
         }
