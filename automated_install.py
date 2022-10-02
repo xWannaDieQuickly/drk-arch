@@ -82,18 +82,18 @@ def create_config(hwInfo):
         f.close()
 
     config = {
-        #"audio": "pipewire",
-        #"bootloader": "grub-install",
-        ## "custom-commands": customCommands,
-        ## "debug": False,
-        #"gfx_driver": vga,
-        #"hostname": hostname,
-        #"harddrives": [
-        #    "/dev/sda"
-        #],
-        #"kernels": [
-        #    "linux"
-        #],
+        "audio": "pipewire",
+        "bootloader": "grub-install",
+        "custom-commands": customCommands,
+        "debug": False,
+        "gfx_driver": vga,
+        "hostname": hostname,
+        "harddrives": [
+            "/dev/sda"
+        ],
+        "kernels": [
+            "linux"
+        ],
         "keyboard-layout": "de",
         "keyboard-language": "de",
         "mirror-region": "Worldwide",
