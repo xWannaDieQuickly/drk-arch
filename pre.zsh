@@ -1,6 +1,6 @@
 #!/bin/zsh
 pacman -S git python-pip --noconfirm
-pip uninstall archinstall --no-input
+pip uninstall archinstall
 #git clone https://github.com/archlinux/archinstall
 #pip install setuptools getmac psutil --no-input
 #cd archinstall
