@@ -6,5 +6,5 @@ yes | pip install setuptools getmac psutil
 cd archinstall
 python setup.py install
 cd ../backup
-python cd automated_install.py
+python automated_install.py
 archinstall --creds creds.json --disk_layouts disk-layouts.json 2> errors.txt
