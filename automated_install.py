@@ -91,22 +91,22 @@ def create_config(hwInfo):
         "harddrives": [
             "/dev/sda"
         ],
-        "kernels": [
-            "linux"
-        ],
-        "keyboard-layout": "de",
-        "keyboard-language": "de",
-        "mirror-region": "Worldwide",
-        "nic": {
-            "NetworkManager": True
-        },
-        "ntp": True,
-        "packages": pkgs,
-        "services": ["gdm", "NetworkManager"],
-        "swap": True,
-        "sys-encoding": "utf-8",
-        "sys-language": "de_DE@euro",
-        "timezone": "Europe/Berlin"
+       ## "kernels": [
+        #    "linux"
+        #],
+        #"keyboard-layout": "de",
+        #"keyboard-language": "de",
+        #"mirror-region": "Worldwide",
+        #"nic": {
+        #    "NetworkManager": True
+        #},
+        #"ntp": True,
+        #"packages": pkgs,
+        #"services": ["gdm", "NetworkManager"],
+        #"swap": True,
+        #"sys-encoding": "utf-8",
+        #"sys-language": "de_DE@euro",
+        #"timezone": "Europe/Berlin"
     }
 
     return config
