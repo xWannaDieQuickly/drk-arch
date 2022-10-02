@@ -8,7 +8,7 @@ import psutil
 import re
 
 
-#path = "BackUp/"
+# path = "BackUp/"
 path = ""
 
 # Read the hardware of the system
@@ -82,31 +82,31 @@ def create_config(hwInfo):
         f.close()
 
     config = {
-        #"audio": "pipewire",
-        #"bootloader": "grub-install",
-        #"custom-commands": customCommands,
-        #"debug": False,
-        #"gfx_driver": vga,
-        #"hostname": hostname,
-       # "harddrives": [
-       #     "/dev/sda"
-       # ],
-       ## "kernels": [
-        #    "linux"
-        #],
-        #"keyboard-layout": "de",
-        #"keyboard-language": "de",
-        #"mirror-region": "Worldwide",
-        #"nic": {
-        #    "NetworkManager": True
-        #},
-        #"ntp": True,
-        #"packages": pkgs,
-        #"services": ["gdm", "NetworkManager"],
-        #"swap": True,
-        #"sys-encoding": "utf-8",
-        #"sys-language": "de_DE@euro",
-        #"timezone": "Europe/Berlin"
+        "audio": "pipewire",
+        "bootloader": "grub-install",
+        # "custom-commands": customCommands,
+        # "debug": False,
+        "gfx_driver": vga,
+        "hostname": hostname,
+        "harddrives": [
+            "/dev/sda"
+        ],
+        "kernels": [
+            "linux"
+        ],
+        "keyboard-layout": "de",
+        "keyboard-language": "de",
+        "mirror-region": "Worldwide",
+        "nic": {
+            "NetworkManager": True
+        },
+        "ntp": True,
+        "packages": pkgs,
+        "services": ["gdm", "NetworkManager"],
+        "swap": True,
+        "sys-encoding": "utf-8",
+        "sys-language": "de_DE@euro",
+        "timezone": "Europe/Berlin"
     }
 
     return config
@@ -114,7 +114,7 @@ def create_config(hwInfo):
 
 def create_creds(hwInfo):
     creds = {
-        #"!root-password": "root",
+        # "!root-password": "root",
         "!encryption-password": "root",
         "!users": [
             {
