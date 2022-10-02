@@ -8,8 +8,8 @@ import psutil
 import re
 
 
-# path = "BackUp/"
-path = ""
+path = "BackUp/"
+#path = ""
 
 # Read the hardware of the system
 
