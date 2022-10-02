@@ -82,7 +82,6 @@ def create_config(hwInfo):
         f.close()
 
     config = {
-        "dry-run": True,
         "audio": "pipewire",
         "bootloader": "grub-install",
         "custom-commands": customCommands,
