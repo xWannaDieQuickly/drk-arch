@@ -50,12 +50,7 @@
     ],
     "commands": [
         "git clone https://aur.archlinux.org/teamviewer",
-        "cd teamviewer/",
-        "makepkg -si",
-        "cd",
-        "git clone https://aur.archlinux.org/icaclient",
-        "makepkg -si",
-        "cd"
+        "git clone https://aur.archlinux.org/icaclient"
     ],
     "none": [
         "efibootmgr",
