@@ -8,7 +8,8 @@ import psutil
 import re
 
 
-path = "BackUp/"
+# path = "BackUp/"
+path = ""
 
 # Read the hardware of the system
 
@@ -197,15 +198,15 @@ def main():
     creds = create_creds(hwInfo=hwInfo)
     diskLayouts = create_disk_layouts(hwInfo=hwInfo)
 
-    with open('config.json', 'w', encoding='utf-8') as f:
+    with open(f'{path}config.json', 'w', encoding='utf-8') as f:
         json.dump(config, f, ensure_ascii=False, indent=4)
         f.close()
 
-    with open('creds.json', 'w', encoding='utf-8') as f:
+    with open(f'{path}creds.json', 'w', encoding='utf-8') as f:
         json.dump(creds, f, ensure_ascii=False, indent=4)
         f.close()
 
-    with open('disk-layouts.json', 'w', encoding='utf-8') as f:
+    with open(f'{path}disk-layouts.json', 'w', encoding='utf-8') as f:
         json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
         f.close()
 
