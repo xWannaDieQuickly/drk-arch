@@ -6,5 +6,5 @@ pip install setuptools getmac psutil --no-input
 cd archinstall
 python setup.py install
 cd
-python automated_install.py
+python BackUp/automated_install.py
 archinstall --config config.json --creds creds.json --disk_layouts disk-layouts.json --dry-runüp
