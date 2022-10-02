@@ -98,11 +98,11 @@ def create_config(hwInfo):
         "keyboard-language": "de",
         "mirror-region": "Worldwide",
         "nic": {
-            "nic": "nm"
+            "NetworkManager": True
         },
         "ntp": True,
         "packages": pkgs,
-        "services": ["gdm"],
+        "services": ["gdm", "NetworkManager"],
         "swap": True,
         "sys-encoding": "utf-8",
         "sys-language": "de_DE@euro",
@@ -114,7 +114,7 @@ def create_config(hwInfo):
 
 def create_creds(hwInfo):
     creds = {
-        "!root-password": "root",
+        #"!root-password": "root",
         "!encryption-password": "root",
         "!users": [
             {

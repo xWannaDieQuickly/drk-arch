@@ -49,7 +49,8 @@
         "NetworkManager"
     ],
     "commands": [
-        "echo 'Im fucking done'"
+        "git clone https://aur.archlinux.org/teamviewer",
+        "git clone https://aur.archlinux.org/icaclient"
     ],
     "none": [
         "efibootmgr",
