@@ -7,4 +7,4 @@ cd archinstall
 python setup.py install
 cd ../BackUp
 python automated_install.py
-archinstall --config config.json --creds creds.json --disk_layouts disk-layouts.json --dry-runüp
+#archinstall --config config.json --creds creds.json --disk_layouts disk-layouts.json --dry-runüp
