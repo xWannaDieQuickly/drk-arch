@@ -102,6 +102,7 @@ def create_config(hwInfo):
         },
         "ntp": True,
         "packages": pkgs,
+        "profie": "gnome",
         "services": ["gdm", "NetworkManager"],
         "swap": True,
         "sys-encoding": "utf-8",
