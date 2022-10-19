@@ -95,7 +95,7 @@ def create_config(hwInfo):
         "keyboard-language": "de",
         "mirror-region": "Worldwide",
         "nic": {
-            "NetworkManager": True
+            None
         },
         "ntp": True,
         "packages": pkgs,
@@ -112,8 +112,8 @@ def create_config(hwInfo):
 
 def create_creds(hwInfo):
     creds = {
-        # "!root-password": "root",
-        "!encryption-password": "root",
+        "!root-password": "root",
+        # "!encryption-password": "root",
         "!users": [
             {
                 "username": "sebi",
@@ -123,12 +123,12 @@ def create_creds(hwInfo):
             {
                 "username": "tester123",
                 "!password": "tester123",
-                "sudo": True
+                "sudo": False
             },
             {
                 "username": "admin",
                 "!password": "admin",
-                "sudo": False
+                "sudo": True
             }
         ]
     }
