@@ -7,9 +7,6 @@ import subprocess
 import psutil
 import re
 
-from sqlalchemy import null
-
-
 # path = "BackUp/"
 path = "./backup/"
 
