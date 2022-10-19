@@ -157,29 +157,31 @@ def create_disk_layouts(hwInfo):
         "/dev/sda": {
             "partitions": [
                 {
-                    "boot": True,
-                    "encrypted": False,
-                    "filesystem": {
-                        "format": "fat32"
-                    },
-                    "mountpoint": "/boot",
-                    "size": "203MiB",
-                    "start": "3MiB",
-                    "type": "primary",
-                    "wipe": True
+                    "name": "sda1",
+                    "fstype": "vfat",
+                    "fsver": "FAT32",
+                    "label": None,
+                    "mountpoints": [None],
+                    "size": "512M",
+                    "type": "part",
                 },
                 {
-                    "boot": False,
-                    "encrypted": True,
-                    "filesystem": {
-                        "format": "ext4",
-                        "mount_options": []
-                    },
-                    "mountpoint": "/",
+                    "name": "sda2",
+                    "fstype": "swap",
+                    "fsver": "1",
+                    "label": None,
+                    "mountpoints": ["[SWAP]"],
+                    "size": "4G",
+                    "type": "part",
+                },
+                {
+                    "name": "sda3",
+                    "fstype": "ext4",
+                    "fsver": "1.0",
+                    "label": None,
+                    "mountpoints": ["/"],
                     "size": "100%",
-                    "start": "205MiB",
-                    "type": "primary",
-                    "wipe": True
+                    "type": "part",
                 }
             ]
         }
