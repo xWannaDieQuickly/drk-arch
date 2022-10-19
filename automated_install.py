@@ -7,6 +7,7 @@ import subprocess
 import psutil
 import re
 
+
 # path = "BackUp/"
 path = "./backup/"
 
@@ -94,7 +95,7 @@ def create_config(hwInfo):
         "keyboard-language": "de",
         "mirror-region": "Worldwide",
         "nic": {
-            "Null"
+            "NetworkManager": None
         },
         "ntp": True,
         "packages": pkgs,
