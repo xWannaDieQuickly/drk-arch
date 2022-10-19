@@ -9,7 +9,7 @@ import re
 
 
 # path = "BackUp/"
-path = ""
+path = "./backup"
 
 # Read the hardware of the system
 
@@ -88,9 +88,6 @@ def create_config(hwInfo):
         "debug": False,
         "gfx_driver": vga,
         "hostname": hostname,
-        "harddrives": [
-            "/dev/sda"
-        ],
         "kernels": [
             "linux"
         ],
