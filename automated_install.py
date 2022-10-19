@@ -94,7 +94,7 @@ def create_config(hwInfo):
         "keyboard-language": "de",
         "mirror-region": "Worldwide",
         "nic": {
-            "Nulll"
+            "Null"
         },
         "ntp": True,
         "packages": pkgs,
