@@ -20,7 +20,17 @@
     "gnome-backgrounds",
     "gnome-keyring",
     "gnome-tweaks",
-    "dconf-editor"
+    "gnome-disk-utility",
+    "dconf-editor",
+    "gnome-system-monitor",
+    "efibootmgr",
+    "os-prober",
+    "mtools",
+    "git",
+    "wget",
+    "zsh",
+    "gedit",
+    "NetworkManager"
   ],
   "services": ["gdm", "NetworkManager"],
   "commands": [
