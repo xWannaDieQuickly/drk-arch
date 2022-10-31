@@ -29,8 +29,7 @@
     "git",
     "wget",
     "zsh",
-    "gedit",
-    "NetworkManager"
+    "gedit"
   ],
   "services": ["gdm", "NetworkManager"],
   "commands": [
