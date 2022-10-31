@@ -1,4 +1,5 @@
 import platform
+from tabnanny import verbose
 import time
 import getmac
 import os
@@ -82,29 +83,36 @@ def create_config(hwInfo):
         f.close()
 
     config = {
-        "audio": "pipewire",
+        "archinstall-language": "German",
+        "audio": "pipwire",
         "bootloader": "grub-install",
-        "custom-commands": customCommands,
+        "config_version": "2.5.1",
         "debug": False,
+        "desktop-environment": "gnome",
         "gfx_driver": vga,
-        "hostname": hostname,
-        "kernels": [
-            "linux"
+        "harddrives": [
+            "/dev/sda"
         ],
+        "hostname": hostname,
         "keyboard-layout": "de",
-        "keyboard-language": "de",
         "mirror-region": "Worldwide",
         "nic": {
-            "NetworkManager": None
+            "dhcp": True,
+            "dns": "null",
+            "gateway": "null",
+            "iface": "null",
+            "ip": "null",
+            "type": "nm"
         },
-        "ntp": True,
-        "packages": pkgs,
-        "profie": "gnome",
-        "services": ["gdm", "NetworkManager"],
-        "swap": True,
-        "sys-encoding": "utf-8",
-        "sys-language": "de_DE@euro",
-        "timezone": "Europe/Berlin"
+        "no_pkg_lookups": False,
+        "offline": False,
+        "profile": {
+            "path": "/usr/lib/python3.10/site-packages/archinstall/profiles/desktop.py"
+        },
+        "script": "null",
+        "silent": False,
+        "sys-language": "de_DE.UTF-8",
+        "version": "2.5.1"
     }
 
     return config
@@ -157,33 +165,43 @@ def create_disk_layouts(hwInfo):
         "/dev/sda": {
             "partitions": [
                 {
-                    "name": "sda1",
-                    "fstype": "vfat",
-                    "fsver": "FAT32",
-                    "label": None,
-                    "mountpoints": [None],
-                    "size": "512M",
-                    "type": "part",
+                    "boot": True,
+                    "encrypted": False,
+                    "filesystem": {
+                        "format": "fat32"
+                    },
+                    "mountpoint": "/boot",
+                    "size": "512MiB",
+                    "start": "1MiB",
+                    "type": "primary",
+                    "wipe": True
                 },
                 {
-                    "name": "sda2",
-                    "fstype": "swap",
-                    "fsver": "1",
-                    "label": None,
-                    "mountpoints": ["[SWAP]"],
-                    "size": "4G",
-                    "type": "part",
+                    "encrypted": False,
+                    "filesystem": {
+                        "format": "ext4",
+                        "mount_options": []
+                    },
+                    "mountpoint":"/",
+                    "size": "20GiB",
+                    "start": "523MiB",
+                    "type": "primary",
+                    "wipe": True
                 },
                 {
-                    "name": "sda3",
-                    "fstype": "ext4",
-                    "fsver": "1.0",
-                    "label": None,
-                    "mountpoints": ["/"],
+                    "encrypted": False,
+                    "filesystem": {
+                        "format": "ext4",
+                        "mount_options": []
+                    },
+                    "mountpoint": "/home",
                     "size": "100%",
-                    "type": "part",
+                    "start": "20GiB",
+                    "type": "primary",
+                    "wipe": True
                 }
-            ]
+            ],
+            "wipe": True
         }
     }
 
