@@ -107,9 +107,6 @@ def create_config(hwInfo):
         },
         "no_pkg_lookups": False,
         "offline": False,
-        "profile": {
-            "path": "/usr/lib/python3.10/site-packages/archinstall/profiles/desktop.py"
-        },
         "packages": pkgs,
         "script": "null",
         "silent": False,
