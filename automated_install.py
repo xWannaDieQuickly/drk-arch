@@ -1,3 +1,4 @@
+from datetime import date
 import platform
 from tabnanny import verbose
 import time
@@ -109,6 +110,7 @@ def create_config(hwInfo):
         "profile": {
             "path": "/usr/lib/python3.10/site-packages/archinstall/profiles/desktop.py"
         },
+        "packages": pkgs,
         "script": "null",
         "silent": False,
         "sys-language": "de_DE.UTF-8",
