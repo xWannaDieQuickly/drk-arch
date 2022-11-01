@@ -213,26 +213,30 @@ def main():
     creds = create_creds(hwInfo=hwInfo)
     diskLayouts = create_disk_layouts(hwInfo=hwInfo)
 
-    # with open(f'{path}config.json', 'w', encoding='utf-8') as f:
-    #     json.dump(config, f, ensure_ascii=False, indent=4)
-    #     f.close()
+    with open(f'{path}config.json', 'w', encoding='utf-8') as f:
+        json.dump(config, f, ensure_ascii=False, indent=4)
+        f.close()
 
-    # with open(f'{path}creds.json', 'w', encoding='utf-8') as f:
-    #     json.dump(creds, f, ensure_ascii=False, indent=4)
-    #     f.close()
+    with open(f'{path}creds.json', 'w', encoding='utf-8') as f:
+        json.dump(creds, f, ensure_ascii=False, indent=4)
+        f.close()
 
-    # with open(f'{path}disk-layouts.json', 'w', encoding='utf-8') as f:
-    #     json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
-    #     f.close()
+    with open(f'{path}disk-layouts.json', 'w', encoding='utf-8') as f:
+        json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
+        f.close()
 
-    # conf = f'{path}config.json'
-    # cred = f'{path}creds.json'
-    # disk_lay = f'{path}disk-layouts.json'
+    conf = f'{path}config.json'
+    cred = f'{path}creds.json'
+    disk_lay = f'{path}disk-layouts.json'
+
+    # json.dumps(diskLayouts,
+    #                                             ensure_ascii=False,
+    #                                             indent=4)
 
     subprocess.run(["archinstall",
-                   "--config", json.dumps(config),
-                    "--disk-layout", json.dumps(diskLayouts),
-                    "--creds", json.dumps(creds),
+                   "--config", conf,
+                    "--disk-layout", disk_lay,
+                    "--creds", cred,
                     ], check=True, text=True)
 
 
