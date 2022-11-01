@@ -230,12 +230,9 @@ def main():
     # disk_lay = f'{path}disk-layouts.json'
 
     subprocess.run(["archinstall",
-                   "--config", json.dumps(config,
-                                          ensure_ascii=False),
-                    "--disk-layout", json.dumps(diskLayouts,
-                                                ensure_ascii=False),
-                    "--creds", json.dumps(creds,
-                                          ensure_ascii=False),
+                   "--config", json.dumps(config),
+                    "--disk-layout", json.dumps(diskLayouts),
+                    "--creds", json.dumps(creds),
                     ], check=True, text=True)
 
 
