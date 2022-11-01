@@ -53,8 +53,6 @@ def get_hw():
 # Create the config json
 def create_config(hwInfo):
 
-    # hostname = "refe"
-
     # Check the VGA
     if hwInfo["vga"] is None:
         vga = "All open-source (default)"
@@ -69,10 +67,11 @@ def create_config(hwInfo):
     else:
         vga = "All open-source (default)"
 
-    if hwInfo["macAddress"] == "00:0c:29:92:0f:3c":
-        hostname = "Sebi"
-    else:
-        hostname = "NONE"
+    # if hwInfo["macAddress"] == "00:0c:29:92:0f:3c":
+    #     hostname = "Sebi"
+    # else:
+    #     hostname = "NONE"
+    hostname = 'DRK_BS'
 
     # Get pkgs and services to install
     with open(f'{path}data.json', 'r', encoding='utf-8') as f:
@@ -80,7 +79,6 @@ def create_config(hwInfo):
         pkgs = data["pkgs"]
         services = data["services"]
         customCommands = data["commands"]
-        # print(pkgs, services)
         f.close()
 
     config = {
@@ -110,6 +108,7 @@ def create_config(hwInfo):
         "packages": pkgs,
         "script": "null",
         "silent": False,
+        "services": services,
         "sys-language": "de_DE.UTF-8",
         "version": "2.5.1"
     }
@@ -214,33 +213,33 @@ def main():
     creds = create_creds(hwInfo=hwInfo)
     diskLayouts = create_disk_layouts(hwInfo=hwInfo)
 
-    with open(f'{path}config.json', 'w', encoding='utf-8') as f:
-        json.dump(config, f, ensure_ascii=False, indent=4)
-        f.close()
+    # with open(f'{path}config.json', 'w', encoding='utf-8') as f:
+    #     json.dump(config, f, ensure_ascii=False, indent=4)
+    #     f.close()
 
-    with open(f'{path}creds.json', 'w', encoding='utf-8') as f:
-        json.dump(creds, f, ensure_ascii=False, indent=4)
-        f.close()
+    # with open(f'{path}creds.json', 'w', encoding='utf-8') as f:
+    #     json.dump(creds, f, ensure_ascii=False, indent=4)
+    #     f.close()
 
-    with open(f'{path}disk-layouts.json', 'w', encoding='utf-8') as f:
-        json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
-        f.close()
+    # with open(f'{path}disk-layouts.json', 'w', encoding='utf-8') as f:
+    #     json.dump(diskLayouts, f, ensure_ascii=False, indent=4)
+    #     f.close()
 
-    conf = f'{path}config.json'
-    cred = f'{path}creds.json'
-    disk_lay = f'{path}disk-layouts.json'
+    # conf = f'{path}config.json'
+    # cred = f'{path}creds.json'
+    # disk_lay = f'{path}disk-layouts.json'
 
-   # subprocess.run(["archinstall",
-   #                 "--config", json.dumps(config,
-   #                                        ensure_ascii=False,
-   #                                        indent=4),
-   #                 "--disk-layout", json.dumps(diskLayouts,
-   #                                             ensure_ascii=False,
-   #                                             indent=4),
-   #                 # "--creds", json.dumps(creds,
-   #                 #                    ensure_ascii=False,
-   #                 #                   indent=4),
-   #                 ], check=True, text=True)
+    subprocess.run(["archinstall",
+                   "--config", json.dumps(config,
+                                          ensure_ascii=False,
+                                          indent=4),
+                    "--disk-layout", json.dumps(diskLayouts,
+                                                ensure_ascii=False,
+                                                indent=4),
+                    "--creds", json.dumps(creds,
+                                          ensure_ascii=False,
+                                          indent=4),
+                    ], check=True, text=True)
 
 
 main()
