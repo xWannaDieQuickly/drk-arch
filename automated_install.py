@@ -231,14 +231,11 @@ def main():
 
     subprocess.run(["archinstall",
                    "--config", json.dumps(config,
-                                          ensure_ascii=False,
-                                          indent=4),
+                                          ensure_ascii=False),
                     "--disk-layout", json.dumps(diskLayouts,
-                                                ensure_ascii=False,
-                                                indent=4),
+                                                ensure_ascii=False),
                     "--creds", json.dumps(creds,
-                                          ensure_ascii=False,
-                                          indent=4),
+                                          ensure_ascii=False),
                     ], check=True, text=True)
 
 
