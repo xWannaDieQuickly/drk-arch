@@ -10,7 +10,6 @@
     "wpa_supplicant",
     "smartmontools",
     "xdg-utils",
-    "nautilus",
     "gdm",
     "gnome-shell",
     "gnome-control-center",

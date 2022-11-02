@@ -1,7 +1,5 @@
-from datetime import date
 import platform
 from tabnanny import verbose
-import time
 import getmac
 import os
 import json
