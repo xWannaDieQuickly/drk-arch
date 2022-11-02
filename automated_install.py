@@ -234,6 +234,7 @@ def main():
                    "--config", json.dumps(config),
                     "--disk-layout", json.dumps(diskLayouts),
                     "--creds", json.dumps(creds),
+                    "--silent"
                     ], check=True, text=True)
 
 
