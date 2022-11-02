@@ -103,8 +103,6 @@ def create_config(hwInfo):
         "no_pkg_lookups": False,
         "offline": False,
         "packages": pkgs,
-        "script": "null",
-        "profile": "",
         "silent": False,
         "services": services,
         "sys-encoding": "UTF-8",
