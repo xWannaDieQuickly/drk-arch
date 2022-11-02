@@ -2,10 +2,8 @@
   "pkgs": [
     "nano",
     "vim",
-    "openssh",
-    "htop",
-    "wget",
     "iwd",
+    "libinput",
     "wireless_tools",
     "wpa_supplicant",
     "smartmontools",
