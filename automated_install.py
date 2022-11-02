@@ -106,6 +106,7 @@ def create_config(hwInfo):
         "script": "null",
         "silent": False,
         "services": services,
+        "sys-encoding": "UTF-8",
         "sys-language": "de_DE.UTF-8",
         "version": "2.5.1"
     }
