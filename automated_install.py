@@ -1,5 +1,4 @@
 import platform
-from tabnanny import verbose
 import getmac
 import os
 import json
