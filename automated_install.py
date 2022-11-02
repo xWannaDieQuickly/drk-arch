@@ -8,7 +8,7 @@ import re
 
 
 # path = "BackUp/"
-path = "./backup/"
+path = "backup/"
 
 # Read the hardware of the system
 
