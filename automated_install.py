@@ -231,9 +231,9 @@ def main():
     #                                             indent=4)
 
     subprocess.run(["archinstall",
-                   "--config", config,
-                    "--disk-layout", diskLayouts,
-                    "--creds", creds,
+                   "--config", json.dumps(config),
+                    "--disk-layout", json.dumps(diskLayouts),
+                    "--creds", json.dumps(creds),
                     ], check=True, text=True)
 
 
