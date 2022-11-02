@@ -104,7 +104,7 @@ def create_config(hwInfo):
         "offline": False,
         "packages": pkgs,
         "script": "null",
-        "profile": "null",
+        "profile": "",
         "silent": False,
         "services": services,
         "sys-encoding": "UTF-8",
