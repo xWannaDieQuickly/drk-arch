@@ -103,7 +103,8 @@ def create_config(hwInfo):
         "no_pkg_lookups": False,
         "offline": False,
         "packages": pkgs,
-        "script": "null",
+        "script": "NONE",
+        "profile": "NONE",
         "silent": False,
         "services": services,
         "sys-encoding": "UTF-8",
@@ -235,7 +236,6 @@ def main():
                    "--config", json.dumps(config),
                     "--disk-layout", json.dumps(diskLayouts),
                     "--creds", json.dumps(creds),
-                    "--silent"
                     ], check=True, text=True)
 
 
