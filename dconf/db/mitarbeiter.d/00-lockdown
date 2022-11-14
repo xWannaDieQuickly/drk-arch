@@ -1,0 +1,4 @@
+[org/gnome/desktop/lockdown]
+disable-command-line=true
+disable-user-switching=true
+user-administration-disabled=true

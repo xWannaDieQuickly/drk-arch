@@ -30,8 +30,7 @@
   ],
   "services": ["gdm", "NetworkManager"],
   "commands": [
-    "git clone https://aur.archlinux.org/teamviewer",
-    "git clone https://aur.archlinux.org/icaclient"
+    "gsettings set org.gnome.desktop.background picture-uri file:///home/sebi/Downloads/test.jpeg"
   ],
   "none": [
     "efibootmgr",
