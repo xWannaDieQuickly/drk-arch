@@ -151,7 +151,7 @@ def create_disk_layouts(hwInfo):
             base_disk = k
 
     diskLayouts = {
-        base_disk: {
+        "/dev/sda": {
             "partitions": [
                 {
                     "boot": True,

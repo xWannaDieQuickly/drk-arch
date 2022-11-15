@@ -1,5 +1,5 @@
 {
-  "pkgs": [
+  "pkgs ": [
     "nano",
     "vim",
     "iwd",
