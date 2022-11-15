@@ -68,7 +68,7 @@ def create_config(hwInfo):
     #     hostname = "Sebi"
     # else:
     #     hostname = "NONE"
-    hostname = 'DRK_BS'
+    hostname = 'drk_bs_client'
 
     # Get pkgs and services to install
     with open(f'{path}data.json', 'r', encoding='utf-8') as f:
@@ -119,13 +119,8 @@ def create_creds(hwInfo):
         # "!encryption-password": "root",
         "!users": [
             {
-                "username": "sebi",
-                "!password": "sebi",
-                "sudo": True
-            },
-            {
-                "username": "tester123",
-                "!password": "tester123",
+                "username": "mitarbeiter",
+                "!password": "mitarbeiter",
                 "sudo": False
             },
             {
