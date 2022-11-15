@@ -105,7 +105,7 @@ def create_config(hwInfo):
         "no_pkg_lookups": False,
         "offline": False,
         "packages": pkgs,
-        "profile": {"path": ""},
+        "profile": None,
         "silent": True,
         "services": services,
         "sys-encoding": "UTF-8",
@@ -147,12 +147,12 @@ def create_disk_layouts(hwInfo):
         diskSize.append(size)
         disks[name] = size
 
-    # DEBUG
-    # print disc sizes
-    # print(max(diskSize))
-    # for k, v in disks.items():
-    #    if v == max(diskSize):
-    #         print(k, "...", v)
+   # DEBUG
+    print(disk, size, name)
+    print(max(diskSize))
+    for k, v in disks.items():
+        if v == max(diskSize):
+            print(k, "...", v)
 
     diskLayouts = {
         "/dev/sda": {
