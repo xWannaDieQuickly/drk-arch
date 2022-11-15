@@ -10,6 +10,7 @@ import os
 
 # Directories
 user_home_dir = '/home/mitarbeiter/'
+temp_dir = '/'
 
 # TODO: Edit environment variables -> ~/.config/environent.d/variables.conf
 
@@ -18,10 +19,7 @@ def create_env_var():
     # Check if file for environment variable exists
     # Else create new one
     if not os.path.exists(f'{user_home_dir}.config/environment.d/variable.conf'):
-        os.mkdir(f'{user_home_dir}.config/environment.d/')
-        with open('variable.conf', 'w') as f:
-            f.write('DCONF_PROFILE="/etc/dconf/profile/mitarbeiter"')
-            f.close()
+        shutil.copytree(f'{temp_dir}environment.d')
 
 
 # TODO: Move Desktop Applications to ~/.local/applications
@@ -46,7 +44,7 @@ def setup_desktop_apps():
 # TODO: Move dconf-files to /etc/dconf/ -> Update dconf
 def setup_dconf():
     shutil.rmtree('/etc/dconf')
-    shutil.copytree('dconf', 'etc/')
+    shutil.copytree(f'{temp_dir}dconf', 'etc/')
     print()
 
 
