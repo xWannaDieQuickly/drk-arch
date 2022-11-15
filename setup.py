@@ -14,7 +14,7 @@ from git import Repo
 # Directories
 user_home_dir = '/home/mitarbeiter/'
 admin_home_dir = '/home/admin/'
-temp_dwn_dir = '/temp/setup'
+temp_dwn_dir = '/temp/setup/'
 github = 'https://www.github.com/xannadiequickly/backup'
 
 
@@ -70,9 +70,9 @@ def setup_desktop_apps():
 
 
 def main():
-    os.mkdir('(/temp/setup')
-    Repo.clone_from(
-        github, temp_dwn_dir)
+    # os.mkdir('(/temp/setup')
+    # Repo.clone_from(
+    #     github, temp_dwn_dir)
     create_env_var()
     setup_dconf()
     setup_desktop_apps()
