@@ -21,6 +21,7 @@
     "dconf-editor",
     "gnome-system-monitor",
     "efibootmgr",
+    "nautilus",
     "os-prober",
     "mtools",
     "git",
@@ -29,9 +30,7 @@
     "gedit"
   ],
   "services": ["gdm", "NetworkManager"],
-  "commands": [
-    "gsettings set org.gnome.desktop.background picture-uri file:///home/sebi/Downloads/test.jpeg"
-  ],
+  "commands": [],
   "none": [
     "efibootmgr",
     "os-prober",
