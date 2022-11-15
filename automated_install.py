@@ -147,15 +147,13 @@ def create_disk_layouts(hwInfo):
         diskSize.append(size)
         disks[name] = size
 
-   # DEBUG
-    print(disk, size, name)
-    print(max(diskSize))
     for k, v in disks.items():
         if v == max(diskSize):
             print(k, "...", v)
+        base_disk = k
 
     diskLayouts = {
-        "/dev/sda": {
+        base_disk: {
             "partitions": [
                 {
                     "boot": True,
