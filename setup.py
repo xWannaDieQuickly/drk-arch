@@ -24,8 +24,8 @@ def create_env_var():
     # Else create new one
     if not os.path.exists(f'{user_home_dir}.config/environment.d'):
         os.makedirs(f'{user_home_dir}.config/environment.d')
-        shutil.copytree(f'{temp_dwn_dir}environment.d',
-                        f'{user_home_dir}.config/environment.d')
+        shutil.copy(f'{temp_dwn_dir}environment.d/variable.conf',
+                    f'{user_home_dir}.config/environment.d/variable.conf')
 
 
 # TODO: Move dconf-files to /etc/dconf/ -> Update dconf
