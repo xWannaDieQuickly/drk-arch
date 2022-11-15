@@ -22,14 +22,20 @@ github = 'https://www.github.com/xannadiequickly/backup'
 def create_env_var():
     # Check if file for environment variable exists
     # Else create new one
-    if not os.path.exists(f'{user_home_dir}.config/environment.d'):
-        os.makedirs(f'{user_home_dir}.config/environment.d')
-        shutil.copy(f'{temp_dwn_dir}environment.d/variable.conf',
-                    f'{user_home_dir}.config/environment.d/variable.conf')
+    if os.path.exists(f'{user_home_dir}.config/environment.d'):
+        return
 
+    os.makedirs(f'{user_home_dir}.config/environment.d')
+    shutil.copy(f'{temp_dwn_dir}environment.d/',
+                f'{user_home_dir}.config/environment.d/')
 
 # TODO: Move dconf-files to /etc/dconf/ -> Update dconf
+
+
 def setup_dconf():
+    if os.path.exists('/etc/dconf'):
+        return
+
     shutil.rmtree('/etc/dconf')
     shutil.copytree(f'{temp_dwn_dir}dconf', '/etc/')
 
