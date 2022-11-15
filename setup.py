@@ -26,8 +26,8 @@ def create_env_var():
         return
 
     os.makedirs(f'{user_home_dir}.config/environment.d')
-    shutil.copy(f'{temp_dwn_dir}environment.d/',
-                f'{user_home_dir}.config/environment.d/')
+    shutil.copytree(f'{temp_dwn_dir}environment.d/',
+                    f'{user_home_dir}.config/environment.d/')
 
 # TODO: Move dconf-files to /etc/dconf/ -> Update dconf
 
