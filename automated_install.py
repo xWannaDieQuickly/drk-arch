@@ -73,12 +73,10 @@ def create_config(hwInfo):
     # Get pkgs and services to install
     with open(f'{path}data.json', 'r', encoding='utf-8') as f:
         data = json.load(f)
-        # pkgs = data["pkgs"]
+        pkgs = data["pkgs"]
         services = data["services"]
         customCommands = data["commands"]
         f.close()
-
-    pkgs = []
 
     config = {
         "archinstall-language": "German",
