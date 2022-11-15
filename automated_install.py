@@ -138,6 +138,7 @@ def create_disk_layouts(hwInfo):
 
     disks = {}
     diskSize = []
+    base_disk = ""
     for d in hwInfo["disks"].split("\n\n\n"):
         disk = d.split("\n")[0]
         size = int(re.findall("(?<=,\s)(.*)(?=\sbytes)", disk)[0])
