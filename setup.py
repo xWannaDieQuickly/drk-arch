@@ -23,21 +23,31 @@ def create_env_var():
     # Check if file for environment variable exists
     # Else create new one
     if os.path.exists(f'{user_home_dir}.config/environment.d'):
+        shutil.rmtree(f'{user_home_dir}.config/environment.d')
         return
 
     os.makedirs(f'{user_home_dir}.config/environment.d')
-    shutil.copytree(f'{temp_dwn_dir}environment.d/',
-                    f'{user_home_dir}.config/environment.d/')
+    shutil.copy(f'{temp_dwn_dir}environment.d/variable.conf',
+                f'{user_home_dir}.config/environment.d/')
 
 # TODO: Move dconf-files to /etc/dconf/ -> Update dconf
 
 
 def setup_dconf():
     if os.path.exists('/etc/dconf'):
+        shutil.rmtree('/etc/dconf')
         return
 
-    shutil.rmtree('/etc/dconf')
-    shutil.copytree(f'{temp_dwn_dir}dconf', '/etc/')
+    os.makedirs('/etc/dconf/db/mitarbeiter.d/locks')
+    os.makedirs('/etc/dconf/profile')
+    shutil.copy(f'{temp_dwn_dir}dconf/db/mitarbeiter.d/locks/01-background',
+                '/etc/dconf/db/mitarbeiter.d/locks/')
+    shutil.copy(f'{temp_dwn_dir}dconf/db/mitarbeiter.d/01-background',
+                '/etc/dconf/db/mitarbeiter.d')
+    shutil.copy(f'{temp_dwn_dir}dconf/db/mitarbeiter.d/00-lockdown',
+                '/etc/dconf/db/mitarbeiter.d')
+    shutil.copy(f'{temp_dwn_dir}dconf/profile/mitarbeiter',
+                '/etc/dconf/profile')
 
 
 # TODO: Load grub.cfg
