@@ -92,7 +92,8 @@ def main():
     #     github, temp_dwn_dir)
     create_env_var()
     setup_dconf()
-    setup_desktop_apps()
+    load_grub_cfg()
+    # setup_desktop_apps()
 
 # sudo -u admin [cmd]
 
