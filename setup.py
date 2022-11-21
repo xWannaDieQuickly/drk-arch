@@ -1,7 +1,7 @@
 import shutil
 import os
 import subprocess
-from git import Repo
+# from git import Repo
 
 
 # TODO: Move Background image to /usr/local/share/background
