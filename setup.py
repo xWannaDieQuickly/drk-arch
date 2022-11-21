@@ -24,7 +24,6 @@ def create_env_var():
     # Else create new one
     if os.path.exists(f'{user_home_dir}.config/environment.d'):
         shutil.rmtree(f'{user_home_dir}.config/environment.d')
-        return
 
     os.makedirs(f'{user_home_dir}.config/environment.d')
     shutil.copy(f'{temp_dwn_dir}environment.d/variable.conf',
@@ -52,9 +51,9 @@ def setup_dconf():
 
 # TODO: Load grub.cfg
 def load_grub_cfg():
-    if not os.path.exists('/etc/default'):
-        os.mkdir('/etc/default')
-        shutil.copyfile(f'{temp_dwn_dir}grub', '/etc/default/')
+    if not os.path.exists('/etc/default/grub'):
+        os.mkdir('/etc/default/grub')
+        shutil.copyfile(f'{temp_dwn_dir}grub', '/etc/default/grub')
 
 
 # TODO: Move Desktop Applications to ~/.local/applications
