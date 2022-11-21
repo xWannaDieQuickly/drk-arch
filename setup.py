@@ -52,8 +52,9 @@ def setup_dconf():
 
 # TODO: Load grub.cfg
 def load_grub_cfg():
-    os.remove('/etc/default/grub')
-    shutil.copyfile(f'{temp_dwn_dir}grub', '/etc/default/')
+    if not os.path.exists('/etc/default'):
+        os.mkdir('/etc/default')
+        shutil.copyfile(f'{temp_dwn_dir}grub', '/etc/default/')
 
 
 # TODO: Move Desktop Applications to ~/.local/applications
