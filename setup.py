@@ -15,7 +15,7 @@ from distutils.dir_util import copy_tree
 # Directories
 user_home_dir = '/home/mitarbeiter/'
 admin_home_dir = '/home/admin/'
-temp_dwn_dir = '/temp/setup/'
+temp_dwn_dir = '/tmp/setup/'
 
 
 # TODO: Edit environment variables -> ~/.config/environent.d/variables.conf
