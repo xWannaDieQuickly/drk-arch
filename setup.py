@@ -33,8 +33,8 @@ def create_env_var():
 def setup_dconf():
     if not os.path.exists('/etc/dconf'):
 
-        os.makedirs('/etc/dconf/profile')
-        os.makedirs('/etc/dconf/db/mitarbeiter.d/locks')
+        os.makedirs('/etc/dconf/profile/')
+        os.makedirs('/etc/dconf/db/mitarbeiter.d/locks/')
         shutil.copy(f'{temp_dwn_dir}dconf/profile/mitarbeiter',
                     '/etc/dconf/profile/')
         shutil.copy(f'{temp_dwn_dir}dconf/db/mitarbeiter.d/00-lockdown',
