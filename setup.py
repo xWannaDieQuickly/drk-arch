@@ -1,7 +1,6 @@
 import shutil
 import os
 import subprocess
-from distutils.dir_util import copy_tree
 # from git import Repo
 
 
@@ -35,23 +34,33 @@ def setup_dconf():
     if os.path.exists('/etc/dconf'):
         shutil.rmtree('/etc/dconf')
         return
-
-    copy_tree(f'{temp_dwn_dir}dconf/', '/etc/dconf/')
+    os.makedirs('/etc/dconf/profile')
+    os.makedirs('/etc/dconf/db/mitarbeiter.d/locks')
+    shutil.copy(f'{temp_dwn_dir}/dconf/profile/mitarbeiter',
+                '/etc/dconf/profile/')
+    shutil.copy(f'{temp_dwn_dir}/dconf/db/mitarbeiter.d/00-lockdown',
+                '/etc/dconf/db/mitarbeiter.d/')
+    shutil.copy(f'{temp_dwn_dir}/dconf/db/01-background',
+                '/etc/dconf/db/mitarbeiter.d/')
+    shutil.copy(f'{temp_dwn_dir}/dconf/db/mitarbeiter.d/locks/01-background',
+                '/etc/dconf/db/mitarbeiter.d/locks/')
 
 
 # TODO: Load grub.cfg
 def load_grub_cfg():
     if not os.path.exists('/etc/default/grub'):
         os.mkdir('/etc/default/')
-    shutil.copyfile(f'{temp_dwn_dir}grub', '/etc/default/grub')
+    shutil.copy(f'{temp_dwn_dir}grub', '/etc/default/grub')
 
 
 # TODO: Move Desktop Applications to ~/.local/applications
 def setup_desktop_apps():
     if not os.path.exists(f'{user_home_dir}.local/share/applications'):
-        os.mkdir(f'{user_home_dir}.local/share/applications')
-    copy_tree(f'/usr/share/applications',
-              f'{user_home_dir}.local/share/applications')
+        os.makedirs(f'{user_home_dir}.local/share/applications')
+    for file in os.listdir(f'/usr/share/applications'):
+        shutil.copy(f'/usr/share/applications', f'{user_home_dir}.local/share/applications')
+    # copy_tree(f'/usr/share/applications',
+    #           f'{user_home_dir}.local/share/applications')
 
     # TODO: Edit .desktop files | Add "NoDisplay=true" if app should not be shown
     for file in os.listdir(f'{user_home_dir}.local/share/applications'):
