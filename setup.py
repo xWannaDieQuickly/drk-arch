@@ -35,13 +35,13 @@ def setup_dconf():
 
         os.makedirs('/etc/dconf/profile')
         os.makedirs('/etc/dconf/db/mitarbeiter.d/locks')
-        shutil.copy(f'{temp_dwn_dir}/dconf/profile/mitarbeiter',
+        shutil.copy(f'{temp_dwn_dir}dconf/profile/mitarbeiter',
                     '/etc/dconf/profile/')
-        shutil.copy(f'{temp_dwn_dir}/dconf/db/mitarbeiter.d/00-lockdown',
+        shutil.copy(f'{temp_dwn_dir}dconf/db/mitarbeiter.d/00-lockdown',
                     '/etc/dconf/db/mitarbeiter.d/')
-        shutil.copy(f'{temp_dwn_dir}/dconf/db/01-background',
+        shutil.copy(f'{temp_dwn_dir}dconf/db/01-background',
                     '/etc/dconf/db/mitarbeiter.d/')
-        shutil.copy(f'{temp_dwn_dir}/dconf/db/mitarbeiter.d/locks/01-background',
+        shutil.copy(f'{temp_dwn_dir}dconf/db/mitarbeiter.d/locks/01-background',
                     '/etc/dconf/db/mitarbeiter.d/locks/')
 
 
