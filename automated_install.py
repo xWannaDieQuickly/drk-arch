@@ -139,7 +139,7 @@ def create_creds(hwInfo):
     """Create credentitals"""
     creds = {
         "!root-password": "root",
-        # "!encryption-password": "root",
+        "!encryption-password": "root",
         "!users": [
             {
                 "username": "mitarbeiter",
