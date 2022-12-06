@@ -15,7 +15,7 @@ def get_largest_disk(disk_lst):
     print(disk_lst)
     disks = {}
     diskSize = []
-    for d in disk_lst["disks"].split("\n\n\n"):
+    for d in disk_lst.split("\n\n\n"):
         disk = d.split("\n")[0]
         size = int(re.findall("(?<=,\s)(.*)(?=\sbytes)", disk)[0])
         name = re.findall("(?<=Disk\s)(.*)(?=:)", disk)[0]
