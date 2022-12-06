@@ -5,16 +5,7 @@
     "gnome-settings-daemon",
     "gnome-shell",
     "gnome-shell-extensions",
-    "gnome-system-monitor",
-    "gnome-tweaks",
-    "gnome-user-docs",
-    "gnome-user-share",
-    "iwd",
-    "libinput",
-    "malcontent",
-    "mtools",
-    "mutter",
-    "nano"
+    "gnome-system-monitor"
   ],
   "services": ["gdm", "NetworkManager"],
   "commands": [],
@@ -59,6 +50,15 @@
     "zsh"
   ],
   "none": [
+    "gnome-tweaks",
+    "gnome-user-docs",
+    "gnome-user-share",
+    "iwd",
+    "libinput",
+    "malcontent",
+    "mtools",
+    "mutter",
+    "nano",
     "nautilus",
     "networkmanager",
     "orca",
