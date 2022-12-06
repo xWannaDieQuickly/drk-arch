@@ -10,9 +10,25 @@ import re
 # path = "BackUp/"
 path = "backup/"
 
+
+def get_largest_disk(disk_lst):
+    disks = {}
+    diskSize = []
+    for d in disk_lst["disks"].split("\n\n\n"):
+        disk = d.split("\n")[0]
+        size = int(re.findall("(?<=,\s)(.*)(?=\sbytes)", disk)[0])
+        name = re.findall("(?<=Disk\s)(.*)(?=:)", disk)[0]
+        diskSize.append(size)
+        disks[name] = size
+
+    for k, v in disks.items():
+        if v == max(diskSize):
+            print(k, "...", v)
+            large_disk = k
+            return large_disk
+
+
 # Read the hardware of the system
-
-
 def get_hw():
     hardInfo = {}
     # Computer network name
@@ -37,8 +53,8 @@ def get_hw():
     hardInfo["firmware"] = "UEFI" if os.path.exists(
         "/sys/firmware/efi") else "BIOS"
     # Disks
-    hardInfo["disks"] = subprocess.run(["fdisk", "-l"], check=True,
-                                       text=True, capture_output=True).stdout
+    hardInfo["disk"] = get_largest_disk(subprocess.run(["fdisk", "-l"], check=True,
+                                                       text=True, capture_output=True).stdout)
     # VGA
     for e in subprocess.run(["lspci"], check=True,
                             text=True, capture_output=True).stdout.splitlines():
@@ -87,8 +103,7 @@ def create_config(hwInfo):
         "desktop-environment": "gnome",
         "gfx_driver": vga,
         "harddrives": [
-            "/dev/sda"
-            # hwInfo["disks"]
+            hwInfo["disk"]
         ],
         "hostname": hostname,
         "keyboard-layout": "de",
@@ -137,22 +152,8 @@ def create_creds(hwInfo):
 
 def create_disk_layouts(hwInfo):
 
-    disks = {}
-    diskSize = []
-    for d in hwInfo["disks"].split("\n\n\n"):
-        disk = d.split("\n")[0]
-        size = int(re.findall("(?<=,\s)(.*)(?=\sbytes)", disk)[0])
-        name = re.findall("(?<=Disk\s)(.*)(?=:)", disk)[0]
-        diskSize.append(size)
-        disks[name] = size
-
-    for k, v in disks.items():
-        if v == max(diskSize):
-            print(k, "...", v)
-            base_disk = k
-
     diskLayouts = {
-        base_disk: {
+        hwInfo["disk"]: {
             "partitions": [
                 {
                     "boot": True,
