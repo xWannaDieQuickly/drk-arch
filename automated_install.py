@@ -7,8 +7,7 @@ import psutil
 import re
 
 
-# path = "BackUp/"
-path = "backup/"
+path = "drk-arch/"
 
 
 def get_largest_disk(disk_lst):
