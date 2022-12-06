@@ -87,7 +87,8 @@ def create_config(hwInfo):
         "desktop-environment": "gnome",
         "gfx_driver": vga,
         "harddrives": [
-            hwInfo["disks"]
+            "/dev/sda"
+            # hwInfo["disks"]
         ],
         "hostname": hostname,
         "keyboard-layout": "de",
