@@ -12,6 +12,7 @@ path = "backup/"
 
 
 def get_largest_disk(disk_lst):
+    print(disk_lst)
     disks = {}
     diskSize = []
     for d in disk_lst["disks"].split("\n\n\n"):
