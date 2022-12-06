@@ -14,55 +14,53 @@ import subprocess
 # Directories
 user_home_dir = '/home/mitarbeiter/'
 admin_home_dir = '/home/admin/'
-temp_dwn_dir = '/temp/setup/'
-github = 'https://www.github.com/xannadiequickly/backup'
+temp_dwn_dir = '/tmp/setup/'
 
 
 # TODO: Edit environment variables -> ~/.config/environent.d/variables.conf
 def create_env_var():
     # Check if file for environment variable exists
     # Else create new one
-    if os.path.exists(f'{user_home_dir}.config/environment.d'):
+    if os.path.exists(f'{user_home_dir}.config/environment.d/variable.conf'):
         shutil.rmtree(f'{user_home_dir}.config/environment.d')
 
     os.makedirs(f'{user_home_dir}.config/environment.d')
     shutil.copy(f'{temp_dwn_dir}environment.d/variable.conf',
                 f'{user_home_dir}.config/environment.d/')
 
+
 # TODO: Move dconf-files to /etc/dconf/ -> Update dconf
-
-
 def setup_dconf():
-    if os.path.exists('/etc/dconf'):
-        shutil.rmtree('/etc/dconf')
-        return
+    if not os.path.exists('/etc/dconf'):
 
-    os.makedirs('/etc/dconf/db/mitarbeiter.d/locks')
-    os.makedirs('/etc/dconf/profile')
-    shutil.copy(f'{temp_dwn_dir}dconf/db/mitarbeiter.d/locks/01-background',
-                '/etc/dconf/db/mitarbeiter.d/locks/')
-    shutil.copy(f'{temp_dwn_dir}dconf/db/mitarbeiter.d/01-background',
-                '/etc/dconf/db/mitarbeiter.d')
-    shutil.copy(f'{temp_dwn_dir}dconf/db/mitarbeiter.d/00-lockdown',
-                '/etc/dconf/db/mitarbeiter.d')
-    shutil.copy(f'{temp_dwn_dir}dconf/profile/mitarbeiter',
-                '/etc/dconf/profile')
+        os.makedirs('/etc/dconf/profile/')
+        os.makedirs('/etc/dconf/db/mitarbeiter.d/locks/')
+        shutil.copy(f'{temp_dwn_dir}dconf/profile/mitarbeiter',
+                    '/etc/dconf/profile/')
+        shutil.copy(f'{temp_dwn_dir}dconf/db/mitarbeiter.d/00-lockdown',
+                    '/etc/dconf/db/mitarbeiter.d/')
+        shutil.copy(f'{temp_dwn_dir}dconf/db/mitarbeiter.d/01-background',
+                    '/etc/dconf/db/mitarbeiter.d/')
+        shutil.copy(f'{temp_dwn_dir}dconf/db/mitarbeiter.d/locks/01-background',
+                    '/etc/dconf/db/mitarbeiter.d/locks/')
 
 
 # TODO: Load grub.cfg
 def load_grub_cfg():
     if not os.path.exists('/etc/default/grub'):
         os.mkdir('/etc/default/')
-    shutil.copyfile(f'{temp_dwn_dir}grub', '/etc/default/grub')
+    shutil.copy(f'{temp_dwn_dir}grub', '/etc/default/grub')
 
 
 # TODO: Move Desktop Applications to ~/.local/applications
 def setup_desktop_apps():
     if not os.path.exists(f'{user_home_dir}.local/share/applications'):
-        os.mkdir(f'{user_home_dir}.local/share/applications')
-    if len(os.listdir(f'{user_home_dir}.local/share/applications')) == 0:
-        shutil.copytree('/usr/share/applications',
-                        f'{user_home_dir}.local/share/applications')
+        os.makedirs(f'{user_home_dir}.local/share/applications')
+    for file in os.listdir(f'/usr/share/applications'):
+        shutil.copy(f'/usr/share/applications',
+                    f'{user_home_dir}.local/share/applications')
+    # copy_tree(f'/usr/share/applications',
+    #           f'{user_home_dir}.local/share/applications')
 
     # TODO: Edit .desktop files | Add "NoDisplay=true" if app should not be shown
     for file in os.listdir(f'{user_home_dir}.local/share/applications'):
