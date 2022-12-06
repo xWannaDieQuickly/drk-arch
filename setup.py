@@ -1,6 +1,7 @@
 import shutil
 import os
 import subprocess
+from sys import argv
 # from git import Repo
 
 
@@ -92,6 +93,7 @@ def main():
     setup_dconf()
     load_grub_cfg()
     # setup_desktop_apps()
+    os.remove(argv[0])
 
 # sudo -u admin [cmd]
 
