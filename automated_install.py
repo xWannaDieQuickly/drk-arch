@@ -10,7 +10,9 @@ import re
 path = "drk-arch/"
 
 
+# Get the largest disk from the list
 def get_largest_disk(disk_lst):
+    """Get the largest disk from the list"""
     print(disk_lst)
     disks = {}
     diskSize = []
@@ -30,6 +32,7 @@ def get_largest_disk(disk_lst):
 
 # Read the hardware of the system
 def get_hw():
+    """Read the hardware of the system"""
     hardInfo = {}
     # Computer network name
     hardInfo["computerNetworkName"] = platform.node()
@@ -65,6 +68,7 @@ def get_hw():
 
 # Create the config json
 def create_config(hwInfo):
+    """Create the config file"""
 
     # Check the VGA
     if hwInfo["vga"] is None:
@@ -130,10 +134,12 @@ def create_config(hwInfo):
     return config
 
 
+# Create credentitals
 def create_creds(hwInfo):
+    """Create credentitals"""
     creds = {
         "!root-password": "root",
-        "!encryption-password": "root",
+        # "!encryption-password": "root",
         "!users": [
             {
                 "username": "mitarbeiter",
@@ -150,7 +156,9 @@ def create_creds(hwInfo):
     return creds
 
 
+# Create the disk layouts
 def create_disk_layouts(hwInfo):
+    """Create the disk layouts"""
 
     diskLayouts = {
         hwInfo["disk"]: {
