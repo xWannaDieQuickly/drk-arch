@@ -117,7 +117,7 @@ def create_config(hwInfo):
 def create_creds(hwInfo):
     creds = {
         "!root-password": "root",
-        # "!encryption-password": "root",
+        "!encryption-password": "root",
         "!users": [
             {
                 "username": "mitarbeiter",
@@ -155,7 +155,6 @@ def create_disk_layouts(hwInfo):
             "partitions": [
                 {
                     "boot": True,
-                    "encrypted": False,
                     "filesystem": {
                         "format": "fat32"
                     },
@@ -166,7 +165,6 @@ def create_disk_layouts(hwInfo):
                     "wipe": True
                 },
                 {
-                    "encrypted": False,
                     "filesystem": {
                         "format": "ext4",
                         "mount_options": []
@@ -178,7 +176,6 @@ def create_disk_layouts(hwInfo):
                     "wipe": True
                 },
                 {
-                    "encrypted": False,
                     "filesystem": {
                         "format": "ext4",
                         "mount_options": []
