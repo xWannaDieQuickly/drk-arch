@@ -107,7 +107,7 @@ def create_config(hwInfo):
         "desktop-environment": "gnome",
         "gfx_driver": vga,
         "harddrives": [
-            hwInfo["disk"]
+            "/dev/sda"
         ],
         "hostname": hostname,
         "keyboard-layout": "de",
@@ -167,7 +167,7 @@ def create_disk_layouts(hwInfo):
     """Create the disk layouts"""
 
     diskLayouts = {
-        hwInfo["disk"]: {
+        "/dev/sda": {
             "partitions": [
                 {
                     "boot": True,
