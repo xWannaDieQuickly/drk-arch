@@ -145,7 +145,7 @@ def create_creds(hwInfo):
     """Create credentitals"""
     creds = {
         "!root-password": "root",
-        "!encryption-password": "root",
+        #"!encryption-password": "root",
         "!users": [
             {
                 "username": "mitarbeiter",
@@ -194,7 +194,7 @@ def create_disk_layouts(hwInfo):
                     "wipe": True
                 },
                 {
-                    "encrypted": True,
+                    "encrypted": False,
                     "filesystem": {
                         "format": "ext4",
                         "mount_options": []
