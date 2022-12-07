@@ -111,9 +111,13 @@ def create_config(hwInfo):
         ],
         "hostname": hostname,
         "keyboard-layout": "de",
-        "mirror-region":
-            "Worldwide",
-
+        "mirror-region": {
+            "Worldwide": {
+                "https://geo.mirror.pkgbuild.com/$repo/os/$arch": True,
+                "http://mirror.rackspace.com/archlinux/$repo/os/$arch": True,
+                "https://mirror.rackspace.com/archlinux/$repo/os/$arch": True
+            },
+        },
         "nic": {
             "dhcp": True,
             "dns": "null",
@@ -141,7 +145,7 @@ def create_creds(hwInfo):
     """Create credentitals"""
     creds = {
         "!root-password": "root",
-        # "!encryption-password": "root",
+        #"!encryption-password": "root",
         "!users": [
             {
                 "username": "mitarbeiter",
