@@ -111,7 +111,13 @@ def create_config(hwInfo):
         ],
         "hostname": hostname,
         "keyboard-layout": "de",
-        "mirror-region": "Worldwide",
+        "mirror-region": {
+            "Worldwide": {
+                "https://geo.mirror.pkgbuild.com/$repo/os/$arch": True,
+                "http://mirror.rackspace.com/archlinux/$repo/os/$arch": True,
+                "https://mirror.rackspace.com/archlinux/$repo/os/$arch": True
+            },
+        },
         "nic": {
             "dhcp": True,
             "dns": "null",
@@ -165,6 +171,7 @@ def create_disk_layouts(hwInfo):
             "partitions": [
                 {
                     "boot": True,
+                    "encrypted": False,
                     "filesystem": {
                         "format": "fat32"
                     },
@@ -175,6 +182,7 @@ def create_disk_layouts(hwInfo):
                     "wipe": True
                 },
                 {
+                    "encrypted": False,
                     "filesystem": {
                         "format": "ext4",
                         "mount_options": []
@@ -186,6 +194,7 @@ def create_disk_layouts(hwInfo):
                     "wipe": True
                 },
                 {
+                    "encrypted": True,
                     "filesystem": {
                         "format": "ext4",
                         "mount_options": []
