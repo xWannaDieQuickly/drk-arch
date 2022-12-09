@@ -1,0 +1,23 @@
+TODO: Edit environment variables -> ~/.config/environent.d/variables.conf
+    -> Set permissions (mitarbeiter/admin)
+TODO: Create dconf-files to /etc/dconf/ -> Update dconf
+    -> db
+      -> gdm
+      -> localUser
+      -> localAdmin
+      -> global
+TODO: Move Background image to /usr/local/share/background
+TODO: Install Teamviewer from aur
+TODO: Install Citrix from aur
+TODO: Install plymouth
+TODO: Create grub.cfg
+ -> 
+TODO: Autorun teamviewer
+TODO: Remove admin/root from login-Screen
+  -> /var/lib/AccountService/users/admin
+    -> SystemAccount = true
+  -> /var/lib/AccountService/users/admin
+    -> SystemAccount = true
+TODO: Setup Desktop Applications to ~/.local/applications
+TODO: Custom Sessions
+  -> Disable Applications
