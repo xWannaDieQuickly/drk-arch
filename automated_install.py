@@ -104,7 +104,6 @@ def create_config(hwInfo):
         "bootloader": "grub-install",
         "config_version": "2.5.1",
         "debug": False,
-        "desktop-environment": "cinnamon",
         "gfx_driver": vga,
         "harddrives": [
             "/dev/sda"
