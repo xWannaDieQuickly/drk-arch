@@ -16,6 +16,7 @@
     "wget",
     "wireless_tools",
     "wpa_supplicant",
+    "xorg",
     "zsh"
   ],
   "services": ["gdm", "NetworkManager"],
