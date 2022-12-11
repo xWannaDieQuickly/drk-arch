@@ -104,7 +104,7 @@ def create_config(hwInfo):
         "bootloader": "grub-install",
         "config_version": "2.5.1",
         "debug": False,
-        "desktop-environment": "gnome",
+        "desktop-environment": "cinnamon",
         "gfx_driver": vga,
         "harddrives": [
             "/dev/sda"
@@ -145,7 +145,7 @@ def create_creds(hwInfo):
     """Create credentitals"""
     creds = {
         "!root-password": "root",
-        #"!encryption-password": "root",
+        # "!encryption-password": "root",
         "!users": [
             {
                 "username": "mitarbeiter",
