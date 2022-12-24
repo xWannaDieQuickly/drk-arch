@@ -2,7 +2,7 @@ import shutil
 import os
 import subprocess
 from sys import argv
-from git import Repo
+# from git import Repo
 
 
 # TODO: Move Background image to /usr/local/share/background
@@ -81,13 +81,15 @@ if __name__ == '__main__':
     # os.mkdir('(/temp/setup')
     # Repo.clone_from(
     #     github, temp_dwn_dir)
-    create_env_var()
-    setup_dconf()
-    load_grub_cfg()
+    # create_env_var()
+    # setup_dconf()
+    # load_grub_cfg()
     # setup_desktop_apps()
     # os.remove(argv[0])
     # sudo -u admin [cmd]
-    shutil.rmtree(temp_dwn_dir)
+
+
+    # shutil.rmtree(temp_dwn_dir)
 
     for pkg in ['xorg']:
         subprocess.run(['pacman', '-S', pkg], capture_output=True)
