@@ -41,7 +41,7 @@ def load_grub_cfg():
     if os.path.exists('/etc/default/grub'):
         os.remove('/etc/default/grub')
     shutil.copy(f'{temp_dwn_dir}grub', '/etc/default/grub')
-    subprocess.run(['grub-mkconfig -o /boot/grub/grub.cfg'])
+    subprocess.run(['grub-mkconfig', '-o', '/boot/grub/grub.cfg'])
 
 # TODO: Move Desktop Applications to ~/.local/applications
 def setup_desktop_apps():
