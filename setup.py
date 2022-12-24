@@ -31,9 +31,6 @@ def create_env_var():
 # TODO: Move dconf-files to /etc/dconf/ -> Update dconf
 def setup_dconf():
     if not os.path.exists('/etc/dconf'):
-
-        os.makedirs('/etc/dconf/profile/')
-        os.makedirs('/etc/dconf/db/mitarbeiter.d/locks/')
         shutil.copytree(f'{temp_dwn_dir}dconf/',
                     '/etc/')
 
