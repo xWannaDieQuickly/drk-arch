@@ -91,5 +91,5 @@ if __name__ == '__main__':
 
     # shutil.rmtree(temp_dwn_dir)
 
-    for pkg in ['xorg']:
+    for pkg in ['thunderbird']:
         subprocess.run(['pacman', '-S', pkg, '--noconfirm'], capture_output=True)
