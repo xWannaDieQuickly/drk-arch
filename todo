@@ -21,3 +21,5 @@ TODO: Remove admin/root from login-Screen
 TODO: Setup Desktop Applications to ~/.local/applications
 TODO: Custom Sessions
   -> Disable Applications
+TODO: Force Xorg on Login
+  -> /etc/gdm/gdm.conf

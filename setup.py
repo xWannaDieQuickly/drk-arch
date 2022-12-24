@@ -22,10 +22,8 @@ temp_dwn_dir = '/tmp/setup/'
 def create_env_var():
     # Check if file for environment variable exists
     # Else create new one
-    if os.path.exists(f'{user_home_dir}.config/environment.d/variable.conf'):
-        shutil.rmtree(f'{user_home_dir}.config/environment.d')
-
-    os.makedirs(f'{user_home_dir}.config/environment.d')
+    if not os.path.exists(f'{user_home_dir}.config/environment.d/'):
+        os.makedirs(f'{user_home_dir}.config/environment.d')
     shutil.copy(f'{temp_dwn_dir}environment.d/variable.conf',
                 f'{user_home_dir}.config/environment.d/')
 
@@ -36,15 +34,8 @@ def setup_dconf():
 
         os.makedirs('/etc/dconf/profile/')
         os.makedirs('/etc/dconf/db/mitarbeiter.d/locks/')
-        shutil.copy(f'{temp_dwn_dir}dconf/profile/mitarbeiter',
-                    '/etc/dconf/profile/')
-        shutil.copy(f'{temp_dwn_dir}dconf/db/mitarbeiter.d/00-lockdown',
-                    '/etc/dconf/db/mitarbeiter.d/')
-        shutil.copy(f'{temp_dwn_dir}dconf/db/mitarbeiter.d/01-background',
-                    '/etc/dconf/db/mitarbeiter.d/')
-        shutil.copy(f'{temp_dwn_dir}dconf/db/mitarbeiter.d/locks/01-background',
-                    '/etc/dconf/db/mitarbeiter.d/locks/')
-
+        shutil.copytree(f'{temp_dwn_dir}dconf/',
+                    '/etc/')
 
 # TODO: Load grub.cfg
 def load_grub_cfg():
@@ -84,18 +75,13 @@ def setup_desktop_apps():
 #         shutil.rmtree(f'{admin_home_dir}{pkg}')
 #         # systemctl enable
 
-
-def main():
+if __name__ == '__main__':
     # os.mkdir('(/temp/setup')
     # Repo.clone_from(
     #     github, temp_dwn_dir)
     create_env_var()
     setup_dconf()
-    load_grub_cfg()
+    #load_grub_cfg()
     # setup_desktop_apps()
-    os.remove(argv[0])
-
-# sudo -u admin [cmd]
-
-
-main()
+    #os.remove(argv[0])
+    # sudo -u admin [cmd]
