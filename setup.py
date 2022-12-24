@@ -2,6 +2,7 @@ import shutil
 import os
 import subprocess
 from sys import argv
+from git import Repo
 
 
 # TODO: Move Background image to /usr/local/share/background
@@ -44,6 +45,8 @@ def load_grub_cfg():
     subprocess.run(['grub-mkconfig', '-o', '/boot/grub/grub.cfg'])
 
 # TODO: Move Desktop Applications to ~/.local/applications
+
+
 def setup_desktop_apps():
     if not os.path.exists(f'{user_home_dir}.local/share/applications'):
         os.makedirs(f'{user_home_dir}.local/share/applications')
@@ -85,3 +88,6 @@ if __name__ == '__main__':
     # os.remove(argv[0])
     # sudo -u admin [cmd]
     shutil.rmtree(temp_dwn_dir)
+
+    for pkg in ['xorg']:
+        subprocess.run(['pacman', '-S', pkg], capture_output=True)
