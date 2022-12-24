@@ -1,0 +1,5 @@
+/org/gnome/desktop/background/picture-uri
+/org/gnome/desktop/background/picture-opacity
+/org/gnome/desktop/lockdown/disable-command-line
+/org/gnome/desktop/lockdown/disable-user-switching
+/org/gnome/desktop/lockdown/user-administration-disabled

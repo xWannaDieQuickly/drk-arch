@@ -2,7 +2,6 @@ import shutil
 import os
 import subprocess
 from sys import argv
-# from git import Repo
 
 
 # TODO: Move Background image to /usr/local/share/background
@@ -22,10 +21,10 @@ temp_dwn_dir = '/tmp/setup/'
 def create_env_var():
     # Check if file for environment variable exists
     # Else create new one
-    if not os.path.exists(f'{user_home_dir}.config/environment.d/'):
-        os.makedirs(f'{user_home_dir}.config/environment.d')
-    shutil.copy(f'{temp_dwn_dir}environment.d/variable.conf',
-                f'{user_home_dir}.config/environment.d/')
+    if os.path.exists(f'{user_home_dir}.config/environment.d/'):
+        shutil.rmtree(f'{user_home_dir}.config/environment.d/')
+    shutil.copytree(f'{temp_dwn_dir}environment.d/',
+                    f'{user_home_dir}.config/environment.d/user_var.conf')
 
 
 # TODO: Move dconf-files to /etc/dconf/ -> Update dconf
@@ -33,16 +32,16 @@ def setup_dconf():
     if os.path.exists('/etc/dconf'):
         shutil.rmtree('/etc/dconf')
     shutil.copytree(f'{temp_dwn_dir}dconf/',
-                        '/etc/dconf')
+                    '/etc/dconf')
+    subprocess.run(['dconf', 'update'])
+
 
 # TODO: Load grub.cfg
-
-
 def load_grub_cfg():
-    if not os.path.exists('/etc/default/grub'):
-        os.mkdir('/etc/default/')
+    if os.path.exists('/etc/default/grub'):
+        os.remove('/etc/default/grub')
     shutil.copy(f'{temp_dwn_dir}grub', '/etc/default/grub')
-
+    subprocess.run(['grub-mkconfig -o /boot/grub/grub.cfg'])
 
 # TODO: Move Desktop Applications to ~/.local/applications
 def setup_desktop_apps():
@@ -81,7 +80,8 @@ if __name__ == '__main__':
     #     github, temp_dwn_dir)
     create_env_var()
     setup_dconf()
-    # load_grub_cfg()
+    load_grub_cfg()
     # setup_desktop_apps()
     # os.remove(argv[0])
     # sudo -u admin [cmd]
+    shutil.rmtree(temp_dwn_dir)
