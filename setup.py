@@ -30,11 +30,13 @@ def create_env_var():
 
 # TODO: Move dconf-files to /etc/dconf/ -> Update dconf
 def setup_dconf():
-    if not os.path.exists('/etc/dconf'):
+    if os.path.exists('/etc/dconf'):
         shutil.copytree(f'{temp_dwn_dir}dconf/',
-                    '/etc/')
+                        '/etc/')
 
 # TODO: Load grub.cfg
+
+
 def load_grub_cfg():
     if not os.path.exists('/etc/default/grub'):
         os.mkdir('/etc/default/')
@@ -78,7 +80,7 @@ if __name__ == '__main__':
     #     github, temp_dwn_dir)
     create_env_var()
     setup_dconf()
-    #load_grub_cfg()
+    # load_grub_cfg()
     # setup_desktop_apps()
-    #os.remove(argv[0])
+    # os.remove(argv[0])
     # sudo -u admin [cmd]
