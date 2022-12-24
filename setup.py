@@ -92,4 +92,4 @@ if __name__ == '__main__':
     # shutil.rmtree(temp_dwn_dir)
 
     for pkg in ['xorg']:
-        subprocess.run(['pacman', '-S', pkg], capture_output=True)
+        subprocess.run(['pacman', '-S', pkg, '--noconfirm'], capture_output=True)
