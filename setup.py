@@ -31,7 +31,8 @@ def create_env_var():
 # TODO: Move dconf-files to /etc/dconf/ -> Update dconf
 def setup_dconf():
     if os.path.exists('/etc/dconf'):
-        shutil.copytree(f'{temp_dwn_dir}dconf/',
+        os.removedirs('/etc/dconf')
+    shutil.copytree(f'{temp_dwn_dir}dconf/',
                         '/etc/')
 
 # TODO: Load grub.cfg
