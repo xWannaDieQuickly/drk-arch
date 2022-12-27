@@ -36,6 +36,7 @@ def create_env_var():
     # Else create new one
     for u in users:
         print(f'{home_dir}{u}/.config/environment.d/')
+        if not os.path.exists(f'{home_dir}{u}/.config/environment.d/'): os.makedirs(f'{home_dir}{u}/.config/environment.d/')
         with open(f'{home_dir}{u}/.config/environment.d/variable.conf', 'w') as f:
             f.write('DCONF_PROFILE=/etc/dconf/profile/', u)
 
