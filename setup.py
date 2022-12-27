@@ -37,8 +37,8 @@ def create_env_var():
     for u in users:
         if os.path.exists(f'{home_dir, u}/.config/environment.d/'):
             shutil.rmtree(f'{home_dir, u}/.config/environment.d/')
-            with open('variable.conf', 'w') as f:
-                f.write('DCONF_PROFILE=/etc/dconf/profile/', u)
+        with open(f'{home_dir, u}/.config/environment.d/variable.conf', 'w') as f:
+            f.write('DCONF_PROFILE=/etc/dconf/profile/', u)
 
 
 # TODO: Move dconf-files to /etc/dconf/ -> Update dconf
