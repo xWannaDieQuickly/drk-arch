@@ -35,6 +35,7 @@ def create_env_var():
     # Check if file for environment variable exists
     # Else create new one
     for u in users:
+        print(u)
         if os.path.exists(f'{home_dir, u}/.config/environment.d/'):
             shutil.rmtree(f'{home_dir, u}/.config/environment.d/')
         with open(f'{home_dir, u}/.config/environment.d/variable.conf', 'w') as f:
