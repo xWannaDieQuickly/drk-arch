@@ -16,7 +16,7 @@ from sys import argv
 
 
 # Directories
-users = ['mitarbeiter', 'admin']
+users = ['admin', 'mitarbeiter', 'admin']
 home_dir = '/home/'
 admin_home_dir = '/home/admin/'
 temp_dwn_dir = '/tmp/setup/'
