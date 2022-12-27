@@ -10,22 +10,35 @@ from sys import argv
 # TODO: Install Citrix from aur
 # TODO: Install plymouth
 # TODO: Autorun teamviewer
+# with open("hello.txt") as my_file:
+#     for line in my_file:
+#         print(line)
 
 
 # Directories
-user_home_dir = '/home/mitarbeiter/'
+users = ['mitarbeiter, admin']
+home_dir = '/home/'
 admin_home_dir = '/home/admin/'
 temp_dwn_dir = '/tmp/setup/'
+
+
+def install_pkgs(pkgs=list):
+    if len(pkgs) < 1:
+        return
+    for pkg in pkgs:
+        subprocess.run(['pacman', '-S', pkg, '--noconfirm'],
+                       capture_output=True)
 
 
 # TODO: Edit environment variables -> ~/.config/environent.d/variables.conf
 def create_env_var():
     # Check if file for environment variable exists
     # Else create new one
-    if os.path.exists(f'{user_home_dir}.config/environment.d/'):
-        shutil.rmtree(f'{user_home_dir}.config/environment.d/')
-    shutil.copytree(f'{temp_dwn_dir}environment.d/',
-                    f'{user_home_dir}.config/environment.d/user_var.conf')
+    for u in users:
+        if os.path.exists(f'{home_dir, u}/.config/environment.d/'):
+            shutil.rmtree(f'{home_dir, u}/.config/environment.d/')
+            with open('variable.conf', 'w') as f:
+                f.write('DCONF_PROFILE=/etc/dconf/profile/', u)
 
 
 # TODO: Move dconf-files to /etc/dconf/ -> Update dconf
@@ -48,17 +61,17 @@ def load_grub_cfg():
 
 
 def setup_desktop_apps():
-    if not os.path.exists(f'{user_home_dir}.local/share/applications'):
-        os.makedirs(f'{user_home_dir}.local/share/applications')
+    if not os.path.exists(f'{home_dir}.local/share/applications'):
+        os.makedirs(f'{home_dir}.local/share/applications')
     for file in os.listdir(f'/usr/share/applications'):
         shutil.copy(f'/usr/share/applications',
-                    f'{user_home_dir}.local/share/applications')
+                    f'{home_dir}.local/share/applications')
     # copy_tree(f'/usr/share/applications',
     #           f'{user_home_dir}.local/share/applications')
 
     # TODO: Edit .desktop files | Add "NoDisplay=true" if app should not be shown
-    for file in os.listdir(f'{user_home_dir}.local/share/applications'):
-        with open(f'{user_home_dir}.local/share/applications/{file}', 'r+') as f:
+    for file in os.listdir(f'{home_dir}.local/share/applications'):
+        with open(f'{home_dir}.local/share/applications/{file}', 'r+') as f:
             contents = f.readlines()
             if 'NoDisplay=true' not in contents:
                 contents.insert(2, 'NoDisplay=true')
@@ -78,18 +91,9 @@ def setup_desktop_apps():
 #         # systemctl enable
 
 if __name__ == '__main__':
-    # os.mkdir('(/temp/setup')
-    # Repo.clone_from(
-    #     github, temp_dwn_dir)
-    # create_env_var()
-    # setup_dconf()
-    # load_grub_cfg()
+    create_env_var()
+    setup_dconf()
+    load_grub_cfg()
     # setup_desktop_apps()
-    # os.remove(argv[0])
-    # sudo -u admin [cmd]
-
 
     # shutil.rmtree(temp_dwn_dir)
-
-    for pkg in ['thunderbird']:
-        subprocess.run(['pacman', '-S', pkg, '--noconfirm'], capture_output=True)
