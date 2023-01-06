@@ -1,7 +1,10 @@
+import getpass
 import shutil
 import os
 import subprocess
 from sys import argv
+import json
+import sys
 # from git import Repo
 
 
@@ -16,16 +19,14 @@ from sys import argv
 
 
 # Directories
-users = ['admin', 'mitarbeiter', 'admin']
+users = ['user', 'admin']
 home_dir = '/home/'
-admin_home_dir = '/home/admin/'
 temp_dwn_dir = '/tmp/setup/'
 
 
-def install_pkgs(pkgs=list):
-    if len(pkgs) < 1:
-        return
-    for pkg in pkgs:
+# TODO: Install packages
+def install_pkgs():
+    for pkg in json.loads('./data/pgks.json'):
         subprocess.run(['pacman', '-S', pkg, '--noconfirm'],
                        capture_output=True)
 
@@ -58,9 +59,8 @@ def load_grub_cfg():
     shutil.copy(f'{temp_dwn_dir}grub', '/etc/default/grub')
     subprocess.run(['grub-mkconfig', '-o', '/boot/grub/grub.cfg'])
 
+
 # TODO: Move Desktop Applications to ~/.local/applications
-
-
 def setup_desktop_apps():
     if not os.path.exists(f'{home_dir}.local/share/applications'):
         os.makedirs(f'{home_dir}.local/share/applications')
@@ -81,6 +81,25 @@ def setup_desktop_apps():
                 f.close()
 
 
+# Create new users
+def create_users():
+    # Asking for users password
+    for u in users:
+        password = getpass.getpass()
+
+        try:
+            # executing useradd command using subprocess module
+            subprocess.run(['useradd', '-p', password, u])
+        except:
+            print(f"Failed to add user.")
+            sys.exit(1)
+
+
+def copy_xx():
+    for u in users:
+        pass
+
+
 # def install_aur():
 #     for pkg in ['teamviewer', 'icaclient']:
 #         Repo.clone_from(
@@ -90,7 +109,6 @@ def setup_desktop_apps():
 #         subprocess.run(["cd"], check=True, text=True)
 #         shutil.rmtree(f'{admin_home_dir}{pkg}')
 #         # systemctl enable
-
 if __name__ == '__main__':
     create_env_var()
     setup_dconf()
