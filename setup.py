@@ -53,10 +53,10 @@ def gdm_disable_wayland():
 
 
 def acc_services():
-    if os.path.exists('/var/lib/AccountsServices'):
-        shutil.rmtree('/var/lib/AccountsServices')
-    shutil.copytree(f'{temp_dwn_dir}AccountsServices/',
-                    '/var/lib/AccountsServices')
+    if os.path.exists('/var/lib/AccountsService'):
+        shutil.rmtree('/var/lib/AccountsService')
+    shutil.copytree(f'{temp_dwn_dir}AccountsService/',
+                    '/var/lib/AccountsService')
 
 
 # TODO: Move dconf-files to /etc/dconf/ -> Update dconf
