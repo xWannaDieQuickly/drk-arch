@@ -48,7 +48,7 @@ def create_env_var():
             ['chmod', '-R', '0644', f'{home_dir}{u}/.config/environment.d'])
 
 
-def gdm_enable_wayland():
+def gdm_disable_wayland():
     os.replace(f'{temp_dwn_dir}custom.conf', '/etc/gdm/custom.conf')
 
 
@@ -133,6 +133,8 @@ if __name__ == '__main__':
     create_env_var()
     setup_dconf()
     load_grub_cfg()
+    acc_services()
+    gdm_disable_wayland()
     # setup_desktop_apps()
 
     # shutil.rmtree(temp_dwn_dir)
