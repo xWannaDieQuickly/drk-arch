@@ -48,6 +48,10 @@ def create_env_var():
             ['chmod', '-R', '0644', f'{home_dir}{u}/.config/environment.d'])
 
 
+def gdm_enable_wayland():
+    os.replace(f'{temp_dwn_dir}custom.conf', '/etc/gdm/custom.conf')
+
+
 # TODO: Move dconf-files to /etc/dconf/ -> Update dconf
 def setup_dconf():
     if os.path.exists('/etc/dconf'):
