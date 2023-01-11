@@ -49,7 +49,7 @@ def create_env_var():
 
 
 def gdm_disable_wayland():
-    os.replace(f'{temp_dwn_dir}custom.conf', '/etc/gdm/custom.conf')
+    shutil.copy(f'{temp_dwn_dir}custom.conf', '/etc/gdm/custom.conf')
 
 
 def acc_services():
