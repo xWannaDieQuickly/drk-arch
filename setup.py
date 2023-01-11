@@ -13,6 +13,7 @@ import sys
 # TODO: Install Citrix from aur
 # TODO: Install plymouth
 # TODO: Autorun teamviewer
+# TODO: var/lib/acc...
 # with open("hello.txt") as my_file:
 #     for line in my_file:
 #         print(line)
@@ -41,6 +42,10 @@ def create_env_var():
             os.makedirs(f'{home_dir}{u}/.config/environment.d/')
         with open(f'{home_dir}{u}/.config/environment.d/variable.conf', 'w') as f:
             f.write(f'DCONF_PROFILE=/etc/dconf/profile/{u}')
+        subprocess.run(
+            ['chown', '-R', 'root:{u}', f'{home_dir}{u}/.config/environment.d'])
+        subprocess.run(
+            ['chmod', '-R', '0644', f'{home_dir}{u}/.config/environment.d'])
 
 
 # TODO: Move dconf-files to /etc/dconf/ -> Update dconf
