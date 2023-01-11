@@ -43,7 +43,7 @@ def create_env_var():
         with open(f'{home_dir}{u}/.config/environment.d/variable.conf', 'w') as f:
             f.write(f'DCONF_PROFILE=/etc/dconf/profile/{u}')
         subprocess.run(
-            ['chown', '-R', 'root:{u}', f'{home_dir}{u}/.config/environment.d'])
+            ['chown', '-R', f'root:{u}', f'{home_dir}{u}/.config/environment.d'])
         subprocess.run(
             ['chmod', '-R', '0644', f'{home_dir}{u}/.config/environment.d'])
 
