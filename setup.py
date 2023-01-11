@@ -52,6 +52,13 @@ def gdm_enable_wayland():
     os.replace(f'{temp_dwn_dir}custom.conf', '/etc/gdm/custom.conf')
 
 
+def acc_services():
+    if os.path.exists('/var/lib/AccountsServices'):
+        shutil.rmtree('/var/lib/AccountsServices')
+    shutil.copytree(f'{temp_dwn_dir}AccountsServices/',
+                    '/var/lib/AccountsServices')
+
+
 # TODO: Move dconf-files to /etc/dconf/ -> Update dconf
 def setup_dconf():
     if os.path.exists('/etc/dconf'):
