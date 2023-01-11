@@ -19,7 +19,7 @@ import sys
 
 
 # Directories
-users = ['user', 'admin']
+users = ['mitarbeiter', 'admin']
 home_dir = '/home/'
 temp_dwn_dir = '/tmp/setup/'
 
