@@ -57,6 +57,10 @@ def setup_dconf():
     subprocess.run(['dconf', 'update'])
 
 
+def force_xorg_login():
+    pass
+
+
 # TODO: Load grub.cfg
 def load_grub_cfg():
     if os.path.exists('/etc/default/grub'):
